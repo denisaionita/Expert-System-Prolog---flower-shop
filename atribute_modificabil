@@ -1,0 +1,26 @@
+ATRIBUTE
+
+Atribut scop : tipul_buchetului
+Atribute deduse:
+1.	Tip_parfum : fresh, dulce, subtil.
+    Depinde de personalitate, sensibilitate_la_miros.
+2.	Tip_aranjament : coroana, lumanare_botez, lumanare_nunta, buchet_mireasa, décor_personal, décor_business, buchet_simplu. 
+    Depinde de: tip_ocazie, scop_aranjament, ambalaj, element_decorativ, buchet_aranjament, e_eveniment.
+3.	Tip_decor : ghiveci, vaza, cos.
+     Depinde de : scop, ambalaj.
+4.	Gama_culori : pale, aprinse, colorate
+    Depinde de: personalitate, tip_eveniment.
+Atribute date de utilizator :
+5.	Continut : asortat, un_tip_floare.
+6.	Floare preferata: trandafir, frezie, orhidee, lalea, cala, crizantema, gerbera, iris.
+7.	Sensibiltate_la_miros_puternic, Boolean : da/nu.
+8.	Tip_ocazie : vesela, trista, oficiala.
+9.	E_eveniment , Boolean : da/nu .
+10.	Buchet_aranjament: buchet, aranjament floral.
+11.	Scop_aranjament : cadou, décor, eveniment_personal
+12.	Tip_eveniment : nunta, botez, intalnire_afaceri, ziua_mamei, valentine’s day, inmormantare.
+13.	Ambalaj : simplu, special, classic.
+14.	Elemente decorative : lumanare, alte_plante, panglica, ursulet.
+15.	Dimensiune : mic, mare, mediu.
+16.	Personalitate : dinamica, conservatoare, romantica. 
+
