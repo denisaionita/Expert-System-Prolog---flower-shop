@@ -18,7 +18,7 @@ Atribute date de utilizator :
 9.	E_eveniment , Boolean : da/nu .
 10.	Buchet_aranjament: buchet, aranjament_floral.
 11.	Scop_aranjament : cadou, décor, eveniment_personal
-12.	Tip_eveniment : nunta, botez, intalnire_afaceri, ziua_mamei, valentine’s day, inmormantare.
+12.	Tip_eveniment : petrece, nunta, botez, intalnire_afaceri, ziua_mamei, valentine’s day, inmormantare.
 13.	Ambalaj : simplu, special, classic.
 14.	Elemente decorative : lumanare, alte_plante, panglica, ursulet.
 15.	Dimensiune : mic, mare, mediu.
