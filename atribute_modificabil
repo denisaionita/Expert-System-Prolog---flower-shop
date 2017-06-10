@@ -4,7 +4,7 @@ Atribut scop : tipul_buchetului
 Atribute deduse:
 1.	Tip_parfum : fresh, dulce, subtil.
     Depinde de personalitate, sensibilitate_la_miros.
-2.	Tip_aranjament : coroana, lumanare_botez, lumanare_nunta, buchet_mireasa, décor_personal, décor_business,decor_petrecere, buchet_simplu, buchet_inmormantare. 
+2.	Tip_aranjament : coroana, lumanare_botez, lumanare_nunta, buchet_mireasa, décor_personal, décor_business, buchet_simplu, buchet_inmormantare. 
     Depinde de: tip_ocazie, scop_aranjament, ambalaj, element_decorativ, buchet_aranjament, e_eveniment.
 3.	Tip_decor : ghiveci, vaza, cos.
      Depinde de : scop, ambalaj.
