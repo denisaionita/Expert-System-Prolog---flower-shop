@@ -1,0 +1,21 @@
+Pagina 1:
+	Numele proiectului,
+	Numele și grupa membrilor echipei
+Pagina 2:
+	Cuprinsul
+	
+Paginile să fie numerotate
+
+Capitole:
+1) Capitol introducere
+	Motivatie alegere tema
+	Utilitatea proiectului
+	Cine poate folosi proiectul și de ce l-ar folosi
+2) Instrucțiuni pentru consolă ( printscreen cu toate ecranele posibile ) - Explicarea lor
+3) Instrucțiuni pentru interfață ( printscreen cu toate ecranele posibile ) - Explicarea lor
+4) Exemple de rulare ( printscreen cu exemple de răspunsuri ( caz fără soluții, caz cu o soluție, caz cu mai multe soluții ), cerințele generale aici)
+5) Explicare a științei din spatele aplicației ( partea din etapa 1 ), soluțiile plus descrierile, explicarea scopului, a regulilor, formatul lor etc, afișare soluții, atribut cu valori 
+multiple și booleene, exemple de regulă și întrebare, tot aici spunem dacă e înlănțuire înapoi sau înainte, ce este un sistem expert, prezentăm și etapa 2 după ce am scris care sunt
+soluțiile posibile arborii etc.
+6) Descrierea cerințelor individuale și explicarea pe scurt a modului de rezolvare
+7) Încheiere
