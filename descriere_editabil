@@ -1,5 +1,5 @@
 {buchet: buchet_primavara}
-{imagine: cale_relativa}
+{imagine: imagini/buchet_primavara.jpg}
 {flori:
 -> hortensii, 4
 -> trandafiri, 6
@@ -13,7 +13,7 @@ trandafiri, liliac si hortensii.'}
 ----------
 
 {buchet: buchet_irisi}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/buchet_irisi.jpg}
 {flori:
 -> iris, 19
 -> mimosa, 3
@@ -26,7 +26,7 @@ dragi irisi primavaratici.'}
 ----------
 
 {buchet: buchet_nunta_wanda}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/buchet_nunta_wanda.jpg}
 {flori:
 -> trandafir, 7
 -> orhidee, 3
@@ -38,7 +38,7 @@ cyclam.'}
 ----------
 
 {buchet: buchet_nunta_romantic}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/buchet_nunta_romantic.jpg}
 {flori:
 -> leucospermum, 2
 -> gerbera, 3
@@ -54,7 +54,7 @@ hypericum, leucadendron si schimia.'}
 ----------
 
 {buchet: buchet_mireasa_frezii}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/buchet_mireasa_frezii.jpg}
 {flori:
 -> frezii, 8
 -> lalele, 12
@@ -66,7 +66,7 @@ de un colier interesant impletit din beargrass proaspat.'}
 ----------
 
 {buchet: lumanare_nunta_mov}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/lumanare_nunta_mov.jpg}
 {flori:
 -> trandafiri, 5
 -> eustoma, 6
@@ -79,7 +79,7 @@ Lumanarea este realizata pe lumanare din ceara naturala, scurta.'}
 ----------
 
 {buchet: lumanare_nunta_romantica}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/lumanare_nunta_romantica.jpg}
 {flori:
 -> trandafiri, 11
 -> iedera, 2
@@ -91,7 +91,7 @@ lumanare din ceara naturala, lunga.'}
 ----------
 
 {buchet: ornament_botez_vaza}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/ornament_botez_vaza.jpg}
 {flori:
 -> trandafiri, 7
 }
@@ -101,7 +101,7 @@ in cinstea unei fetite mult asteptate si sarbatorite.'}
 ----------
 
 {buchet: ornament_botez_cizma}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/ornament_botez_cizma.jpg}
 {flori:
 -> gerbera, 2
 }
@@ -111,7 +111,7 @@ prin prospetime si colorit.'}
 ----------
 
 {buchet: ornament_botez_elegant}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/ornament_botez_elegant.jpg}
 {flori:
 -> trandifiri, 5
 -> dendrobium, 1
@@ -122,7 +122,7 @@ Este un aranjament de masa ce va impresiona toti invitatii prin amploare si culo
 ----------
 
 {buchet: aranjament_masa_botez}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/aranjament_masa_botez.jpg}
 {flori:
 -> trandifiri, 3
 -> orhidee, 4
@@ -133,7 +133,7 @@ ii va impresiona pe toti cei prezenti la botez/nunta prin prospetimea florilor s
 ----------
 
 {buchet: lumanare_botez}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/lumanare_botez.jpg}
 {flori:
 -> trandafiri, 13
 -> gypsophila, 5
@@ -144,7 +144,7 @@ si de frumoasa.'}
 ----------
 
 {buchet: aranjament_petrecere_regal}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/aranjament_petrecere_regal.jpg}
 {flori:
 -> cale, 8
 -> trandafiri, 5
@@ -156,7 +156,7 @@ intr-un decor de verdeata.'}
 ----------
 
 {buchet: aranjament_afaceri_cale}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/aranjament_afaceri_cale.jpg}
 {flori:
 -> cale, 3
 -> floare_de_planta, 1
@@ -167,8 +167,8 @@ suculenta.'}
 
 ----------
 
-{buchet: decor_business}
-{imagine:cale_relativa_imagine}
+{buchet: decor_bussiness}
+{imagine: imagini/decor_bussiness.jpg}
 {flori:
 -> lalele, 15
 }
@@ -178,7 +178,7 @@ albe, ramuri naturale si muschi de copac.'}
 ----------
 
 {buchet: decor_personal}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/decor_personal.jpg}
 {flori:
 -> gerbera, 3
 -> hortensii, 3
@@ -190,7 +190,7 @@ cadou superb alege acest buchet in vaza, din gerbera, hortensii si ornitogalum.'
 ----------
 
 {buchet: decor_valentine_day}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/decor_valentine_day.jpg}
 {flori:
 -> trandafiri, 11
 }
@@ -200,7 +200,7 @@ ursulet de plus. Cadoul este adorabil si irezistibil.'}
 ----------
 
 {buchet: decor_8_martie}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/decor_8_martie.jpg}
 {flori:
 -> trandafiri, 11
 }
@@ -211,7 +211,7 @@ rosii.'}
 ----------
 
 {buchet: coroana_garoafe}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/coroana_garoafe.jpg}
 {flori:
 -> garoafe, 46
 }
@@ -222,7 +222,7 @@ ultim omagiu in cadrul oricarei ceremonii funerare.'}
 ----------
 
 {buchet: coroana_crizantema}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/coroana_crizantema.jpg}
 {flori:
 -> crizantema, 60
 }
@@ -232,7 +232,7 @@ Este ideala pentru a transmite cele mai sincere regrete celui plecat pe ultimul 
 ----------
 
 {buchet: coroana_orhidee}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/coroana_orhidee.jpg}
 {flori:
 -> orhide_imperiala, 80
 }
@@ -242,7 +242,7 @@ aceasta coroana pretioasa si impresionanta prin frumusetea si exoticul compoziti
 ----------
 
 {buchet: buchet_inmormantare}
-{imagine:cale_relativa_imagine}
+{imagine: imagini/buchet_inmormantare.jpg}
 {flori:
 -> cale, 6
 }
