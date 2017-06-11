@@ -31,7 +31,7 @@ atunci
 
 rg::5
 conditii={
-    tip_eveniment e egal cu inmormantare
+    tip_eveniment e egal cu inmormantare,
     buchet_aranjament e egal cu buchet
     
 }
@@ -41,7 +41,7 @@ atunci
 rg::6
 conditii={
     tip_eveniment e egal cu inmormantare, 
-    tip_aranjament e egal cu buchet_inmormantare,
+    tip_aranjament e egal cu buchet_inmormantare
       
 }
 atunci
@@ -49,7 +49,7 @@ atunci
 
 rg::7
 conditii={
-    tip_eveniment e egal cu inmormantare
+    tip_eveniment e egal cu inmormantare,
     buchet_aranjament e egal cu aranjament
     
 }
@@ -426,7 +426,7 @@ rg::46
 conditii={
     e_eveniment[fals],
     buchet_aranjament e egal cu aranjament_floral,
-    scop_aranjament e egal cu decor,
+    scop_aranjament e egal cu decor
     
 }
 atunci
@@ -435,7 +435,7 @@ atunci
 rg::47
 conditii={
     buchet_aranjament e egal cu aranjament_floral,
-    scop_aranjament e egal cu eveniment_personal,
+    scop_aranjament e egal cu eveniment_personal
     
 }
 atunci
@@ -454,7 +454,7 @@ atunci
  rg::49
 conditii={
     tip_aranjament e egal cu decor,
-    tip_eveniment e egal cu petrecere, 
+    tip_eveniment e egal cu petrecere
 }
 atunci
     tipul_buchetului e egal cu aranjament_petrecere_regal fc:70.
@@ -462,7 +462,7 @@ atunci
 rg::50
 conditii={
     tip_aranjament e egal cu decor_business,
-    tip_eveniment e egal cu petrecere, 
+    tip_eveniment e egal cu petrecere 
 }
 atunci
     tipul_buchetului e egal cu aranjament_petrecere_regal fc:90.
@@ -499,7 +499,7 @@ conditii={
     buchet_aranjament e egal cu aranjament_floral,
     scop_aranjament e egal cu cadou,
     tip_eveniment e egal cu ziua_mamei,
-    continut e egal cu un_tip_floare
+    continut e egal cu un_tip_floare,
     floare_preferata e egal cu trandafiri
 }
 atunci
@@ -522,7 +522,7 @@ conditii={
     buchet_aranjament e egal cu aranjament_floral,
     scop_aranjament e egal cu cadou,
     personalitate e egal cu romantica,
-    continut e egal cu o_singura_floare
+    continut e egal cu o_singura_floare,
     floare_preferata e egal cu trandafir
 
 }
@@ -534,7 +534,7 @@ conditii={
     buchet_aranjament e egal cu aranjament_floral,
     scop_aranjament e egal cu cadou,
     tip_eveniment e egal cu valentines_day,
-    continut e egal cu o_singura_floare
+    continut e egal cu o_singura_floare,
     floare_preferata e egal cu trandafir
 
 }
@@ -547,7 +547,7 @@ rg::58
 conditii={
     tip_aranjament e egal cu decor_business,
     tip_decor e egal cu vaza,
-    continut e egal cu un_tip_floare
+    continut e egal cu un_tip_floare,
     floare_preferata e egal cu lalea
 
 }
@@ -796,7 +796,7 @@ rg::83
 conditii={
     scop_aranjament e egal cu cadou,
     buchet_aranjament e egal cu buchet,
-    elemente_decorative e egal cu lumanare
+    elemente_decorative e egal cu lumanare,
     tip_eveniment e egal cu botez 
 }
 atunci
@@ -806,7 +806,7 @@ rg::84
 conditii={
     scop_aranjament e egal cu eveniment_personal,
     buchet_aranjament e egal cu buchet,
-    elemente_decorative e egal cu lumanare
+    elemente_decorative e egal cu lumanare,
     tip_eveniment e egal cu botez 
 }
 atunci
