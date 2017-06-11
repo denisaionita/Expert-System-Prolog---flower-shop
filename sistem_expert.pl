@@ -9,10 +9,10 @@
 :-dynamic interogabil/3.
 :-dynamic regula/3.
 :-dynamic intrebare_curenta/3.
-:-dynamic descriere/1.
-:-dynamic buchet/1.
-:-dynamic imagine/1.
-:-dynamic flori/1.
+
+:-dynamic descriere/4.
+
+
 
 not(P):-P,!,fail.
 not(_).
@@ -23,7 +23,7 @@ write(H), tab(1),
 scrie_lista(T).
              
 afiseaza_fapte :-
-write('Fapte existente în baza de cunostinte:'),
+write('Fapte existente Ã®n baza de cunostinte:'),
 nl,nl, write(' (Atribut,valoare) '), nl,nl,
 listeaza_fapte,nl.
 
@@ -43,9 +43,22 @@ Regula1 is integer(Regula);
 Regula ==utiliz, Regula1=Regula),
 lista_float_int(Reguli,Reguli1).
 
+scrie_in_fisier(Fis,Output) :-
+	open(Fis,write,Stream),
+	write(Stream,Output),
+	write(Stream,nl),
+	close(Stream).
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+%%
+create_replace_output_file(Name) :- 
+	close_all_streams,
+	current_directory(D),
+	(directory_exists(output_flori),append(D,'/',WdFolder1),append(WdFolder1,Name,WdFolder),current_directory(_,WdFolder));
+	( \+directory_exists(output_flori), make_directory(Name),append(D,'/',WdFolder1),append(WdFolder1,Name,WdFolder),current_directory(_,WdFolder)).
+	 
+	 
+%%
 
 un_pas(Rasp,OptiuniUrm,MesajUrm):-scop(Atr),(Rasp \== null,intreaba_acum(Rasp) ; true),
 								determina1(Atr,OptiuniUrm,MesajUrm), afiseaza_scop(Atr).
@@ -111,7 +124,7 @@ actualizeaza(Scop,FC_nou,FC_curent,N),
 FC_curent == 100; true),!.
 fg1(Scop,FC,_,_,_) :- fapt(Scop,FC,_).
 
-
+%afiseaza_demonstratii 
 
 demonstreaza1(N,ListaPremise,Val_finala,Istorie,OptiuniUrm,MesajUrm) :-
 dem1(ListaPremise,100,Val_finala,[N|Istorie],OptiuniUrm,MesajUrm),!.
@@ -138,7 +151,7 @@ executa([H|T]), H == iesire.
 
 executa([incarca]) :- 
 incarca,!,nl,
-write('Fisierul dorit a fost incarcat'),nl, incarca_descriere,!,nl .
+write('Fisierul dorit a fost incarcat'),nl,incarca_descriere('descriere.txt'),!,nl.%create_replace_output_file,!,nl .
 executa([consulta]) :- 
 scopuri_princ,!.   
 executa([reinitiaza]) :-   %sterge baza de cun : faptele si atr interogate, apoi consult ca sa ia din nou intrb 
@@ -150,18 +163,20 @@ executa([cum|L]) :- cum(L),!.  % pt afis dem scriem: 'cum atribut este valoare..
 executa([iesire]):-!.
 executa([_|_]) :-
 write('Comanda incorecta! '),nl.
-
+	
+	
 scopuri_princ :-  % pt pct j trb un setof, cu grupare dupa fc si afisare inversa
 scop(Atr),determina(Atr), afiseaza_scop(Atr),fail. % determina vrea sa det valoarea pt atributul scop; afiseaza ne afis sol
 scopuri_princ. % caz de oprire
 
 determina(Atr) :-
+av(Atr,Val),
 realizare_scop(av(Atr,_),_,[scop(Atr)]),!.   %ultimul parametru este istoricul 
 determina(_).
 
 afiseaza_scop(Atr) :-
 nl,fapt(av(Atr,Val),FC,_),
-FC >= 20,scrie_scop(av(Atr,Val),FC),
+FC >= 40,scrie_scop(av(Atr,Val),FC),
 nl,fail.
 afiseaza_scop(_):-nl,nl.
 
@@ -175,11 +190,17 @@ FC1 is integer(FC),write(FC1).
 realizare_scop(not Scop,Not_FC,Istorie) :-  %poate fi apelat si pt testarea premiselor, nu doar pt aflare scop
 realizare_scop(Scop,FC,Istorie),
 Not_FC is - FC, !.
+
 realizare_scop(Scop,FC,_) :-
-fapt(Scop,FC,_), !.%in fapt se memoreaza cunostintele ; verificam daca pt acest scop avem deja val
+fapt(Scop,FC,_),
+scop=av(Atr,nu_conteaza), !.%in fapt se memoreaza cunostintele ; verificam daca pt acest scop avem deja val
+realizare_scop(Scop,FC,_) :-
+fapt(Scop,FC,_), !.
+
 realizare_scop(Scop,FC,Istorie) :-
 pot_interoga(Scop,Istorie),
 !,realizare_scop(Scop,FC,Istorie).
+
 realizare_scop(Scop,FC_curent,Istorie) :-
 fg(Scop,FC_curent,Istorie). %fg primeste scop si calculeaza fc_curent si istoric
         
@@ -259,10 +280,11 @@ cum_premise([]).
 cum_premise([Scop|X]) :-
 cum(Scop),
 cum_premise(X).
-        
+       /*(Daca o intrebare primeste raspunsul cu valoarea nu_stiu, atunci sistemul expert va sari peste regulile care au nevoie de valoarea acelui atribut (pentru ca nu ne putem baza pe valoarea lui). 
+	   Daca o intrebare primeste raspunsul cu valoarea nu_conteaza, atunci considera testul pentru atributul asociat ca fiind adevarat in orice regula indiferent de valoarea lui.) */
 interogheaza(Atr,Mesaj,[da,nu],Istorie) :-  
-!,write(Mesaj),nl, %afis intrebarea
-de_la_utiliz(X,Istorie,[da,nu]), 
+!,write(Mesaj),write('( da, nu, nu_stiu, nu_conteaza )'),nl, %afis intrebarea
+de_la_utiliz(X,Istorie,[da,nu,nu_stiu,nu_conteaza]), 
 det_val_fc(X,Val,FC),
 asserta( fapt(av(Atr,Val),FC,[utiliz]) ).
 
@@ -271,17 +293,18 @@ write(Mesaj),nl,
 citeste_opt(VLista,Optiuni,Istorie), %
 assert_fapt(Atr,VLista).
 %% treb modificat ca pt atr booleene sa afiseze si optiunile; la restul atr optiunile: nu stiu , nu conteaza LA FINAL
+
 citeste_opt(X,Optiuni,Istorie) :-   %de modificat cu opti ^
-append(['('],Optiuni,Opt1),  %aici mai punem in append(Opt1,['nu stiu, nu conteaza)]',Opt)
-append(Opt1,[' nu stiu, nu sonteaza)'],Opt),
+append(['('],Optiuni,Opt1),  %aici mai punem in append(Opt1,['nu stiu, nu conteaza)]',Opt) MODIFICAT 
+append(Opt1,[' nu_stiu, nu_conteaza )'],Opt),
 scrie_lista(Opt),
-de_la_utiliz(X,Istorie,Optiuni).
+de_la_utiliz(X,Istorie,Opt).
 
 de_la_utiliz(X,Istorie,Lista_opt) :-
 repeat,write(': '),citeste_linie(X),
 proceseaza_raspuns(X,Istorie,Lista_opt). %verif daca este in lista de optiuni 
 
-proceseaza_raspuns([de_ce],Istorie,_) :-                         nl,afis_istorie(Istorie),!,fail.
+proceseaza_raspuns([de_ce],Istorie,_) :- nl,afis_istorie(Istorie),!,fail.
 
 proceseaza_raspuns([X],_,Lista_opt):-   %verif daca este in lista de optiuni
 member(X,Lista_opt).
@@ -343,16 +366,32 @@ FCM1 is abs(FC1),FCM2 is abs(FC2),
 MFC is min(FCM1,FCM2),
 X is 100 * (FC1 + FC2) / (100 - MFC),
 FC is round(X).
+
+
+
+%%%% INCARCA DESCRIERE
+/*
 incarca_descriere :-
 write('Introduceti numele fisierului care doriti sa fie incarcat: '),nl, write('|:'),read(F),
-file_exists(F),!,incarca(F).
-incarca:-write('Nume incorect de fisier! '),nl,fail.
+file_exists(F),!,incarca_d(F).
 
-incarca(F) :-
-retractall(buchet(_)),retractall(imagine(_)),
-retractall(flori(_)),retractall(descriere(_)), 
-retractall(regula(_,_,_)),
-see(F),incarca_reguli,seen,!.
+incarca_d:-write('Nume incorect de fisier! '),nl,fail.
+*/
+incarca_descriere(F) :-
+retractall(descriere(_,_,_,_)),
+see(F),incarca_descrierea,seen,!.
+
+incarca_descrierea :-
+repeat,citeste_descriere(L),
+proceseaza(L), L==[end_of_file],nl.
+
+citeste_descriere(L):-
+ citeste_linie(Lin), 
+(Lin==[end_of_file],L=Lin,!;
+ Lin=['-','-'|_], L=[],!;
+ citeste_descriere(RestLinii),append(Lin,RestLinii,L) ).
+ 
+%%%% INCARCA REGULI
 
 incarca_reguli :-
 repeat,citeste_propozitie(L),
@@ -376,37 +415,55 @@ proceseaza(L),L == [end_of_file],nl.
 proceseaza([end_of_file]):-!.
 proceseaza(L) :-
 trad(R,L,[]),assertz(R), !.  %DCG
-trad(scop(X)) --> [scopul,este,X].
-trad(scop(X)) --> [scopul,X].
+trad(scop(X)) --> [scop,:,:,X]. %MODIFICAT
+%trad(scop(X)) --> [scop,X].
 trad(interogabil(Atr,M,P)) --> 
-[intreaba,Atr],lista_optiuni(M),afiseaza(Atr,P).
+['?','?','?',Atr],lista_optiuni(M),afiseaza(Atr,P).
+
 trad(regula(N,premise(Daca),concluzie(Atunci,F))) --> identificator(N),daca(Daca),atunci(Atunci,F).
+
+%%% INCA UN TRAD PT DESCRIERE    !!!DE COMPLETAT
+%trad_desc(descriere(Buchet, Cale,ListaFlori,Desc))--> ['{','buchet',':',Buchet,'}','{','imagine',':',Cale,'}'], lista_flori(ListaFlori).
+
+trad(descriere(Buchet, Cale,ListaFlori,Desc)) --> nume_buchet(Buchet),cale(Cale),lista_premise_desc(ListaFlori),desc(Desc).
+
 trad('Eroare la parsare'-L,L,_).
 
-lista_optiuni(M) --> [optiuni,'('],lista_de_optiuni(M).
-lista_de_optiuni([Element]) -->  [Element,')'].  %de inlocuit )
-lista_de_optiuni([Element|T]) --> [Element],lista_de_optiuni(T).  
+nume_buchet(Buchet) --> ['{','buchet',':',Buchet, '}'].
 
-afiseaza(_,P) -->  [afiseaza,P].
+lista_premise_desc([Buch]) --> ['-','>'],propoz_desc(Buch), ['}'] . %MODIFICAT
+lista_premise_desc([Prima|Celalalte]) --> ['-','>'], propoz_desc(Prima),lista_premise_desc(Celalalte).
+
+propoz_desc(flori(Nume,Numar)) --> [Nume,',',Numar].
+
+cale(Cale) --> ['{','imagine',':',Cale,'}','{','flori',':'].
+
+desc(Desc) --> ['{','descriere',':',Desc,'}'].
+
+%%%% Reguli : 
+lista_optiuni(M) --> [raspunsuri,posibile ,:],lista_de_optiuni(M).
+lista_de_optiuni([Element]) -->  [Element,intrebare].  %de inlocuit ) INLOCUIT 
+lista_de_optiuni([Element|T]) --> [Element,;],lista_de_optiuni(T).  
+
+afiseaza(_,P) -->  [P]. %MODIFICAT
 afiseaza(P,P) -->  [].
-identificator(N) --> [regula,N].
+identificator(N) --> [rg,:,:,N].  %MODIFICAT
 
-daca(Daca) --> [daca],lista_premise(Daca).
+daca(Daca) --> [conditii,'=','{'],lista_premise(Daca). 
 
-lista_premise([Daca]) --> propoz(Daca),[atunci].
+lista_premise([Daca]) --> propoz(Daca),['}',atunci]. %MODIFICAT
 lista_premise([Prima|Celalalte]) --> propoz(Prima),[si],lista_premise(Celalalte).
 lista_premise([Prima|Celalalte]) --> propoz(Prima),[','],lista_premise(Celalalte).
 
-atunci(Atunci,FC) --> propoz(Atunci),[fc],[FC].
+atunci(Atunci,FC) --> propoz(Atunci),[fc,':'],[FC].
 atunci(Atunci,100) --> propoz(Atunci).
 
 propoz(not av(Atr,da)) --> [not,Atr].
-propoz(av(Atr,Val)) --> [Atr,este,Val].
+propoz(av(Atr,Val)) --> [Atr,e,egal,cu,Val].
 propoz(av(Atr,da)) --> [Atr].
 
 citeste_linie([Cuv|Lista_cuv]) :-   %get_code citeste codul ascii, calculeaza cuvantul si il pune in Cuv si Car1 e car imediat dupa 
-get_code(Car),
-citeste_cuvant(Car, Cuv, Car1), 
+get_code(Car),citeste_cuvant(Car, Cuv, Car1), 
 rest_cuvinte_linie(Car1, Lista_cuv). 
       
 % -1 este codul ASCII pt EOF
@@ -500,10 +557,10 @@ citeste_cuvant(_,Cuvant,Caracter1) :-
 get_code(Caracter),       
 citeste_cuvant(Caracter,Cuvant,Caracter1). 
 
-caracter_cuvant(C):-member(C,[44,59,58,63,33,46,41,40]).  %trecem codul pt toate caracterele speciale pe care le avem 
+caracter_cuvant(C):-member(C,[44,59,58,63,33,46,41,40,91,93,123,125,61,45,62]).  %trecem codul pt toate caracterele speciale pe care le avem 
 
-% am specificat codurile ASCII pentru , ; : ? ! . ) (
-%de pus si comentariul
+% am specificat codurile ASCII pentru , ; : ? ! . ) ( }{ : = - >   FACUT
+
 
 caractere_in_interiorul_unui_cuvant(C):-
 C>64,C<91;C>47,C<58;
