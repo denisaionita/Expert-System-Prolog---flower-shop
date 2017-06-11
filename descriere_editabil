@@ -110,7 +110,7 @@ prin prospetime si colorit.'}
 
 ----------
 
-{buchet: ornament_botez_nunta_elegant}
+{buchet: ornament_botez_elegant}
 {imagine:cale_relativa_imagine}
 {flori:
 -> trandifiri, 5
@@ -121,7 +121,7 @@ Este un aranjament de masa ce va impresiona toti invitatii prin amploare si culo
 
 ----------
 
-{buchet: aranjament_masa_botez_nunta}
+{buchet: aranjament_masa_botez}
 {imagine:cale_relativa_imagine}
 {flori:
 -> trandifiri, 3
@@ -129,6 +129,17 @@ Este un aranjament de masa ce va impresiona toti invitatii prin amploare si culo
 }
 {descriere: 'Aranjament format din trandafiri roz si orhidee verde, cu un numar total de 7 flori. Este un aranjament de masa ce
 ii va impresiona pe toti cei prezenti la botez/nunta prin prospetimea florilor si delicatetea designului.'}
+
+----------
+
+{buchet: lumanare_botez}
+{imagine:cale_relativa_imagine}
+{flori:
+-> trandafiri, 13
+-> gypsophila, 5
+}
+{descriere: 'Lumanare de botez fetite trandafiri roz, gypsophila, verdeata si organza. Pentru o fetita speciala, atat de dragalasa 
+si de frumoasa.'}
 
 ----------
 
@@ -196,17 +207,6 @@ ursulet de plus. Cadoul este adorabil si irezistibil.'}
 {descriere: 'Inima de trandafiri pentru ziua femeii. 8 martie este un omagiu binemeritat adus celor care ne aduc pe lume. Daruieste 
 o superba inima din trandafiri pentru a-i transmite adevaratele tale sentimente de iubire. Inima de trandafiri contine 29 trandafiri 
 rosii.'}
-
-----------
-
-{buchet: lumanare_botez}
-{imagine:cale_relativa_imagine}
-{flori:
--> trandafiri, 13
--> gypsophila, 5
-}
-{descriere: 'Lumanare de botez fetite trandafiri roz, gypsophila, verdeata si organza. Pentru o fetita speciala, atat de dragalasa 
-si de frumoasa.'}
 
 ----------
 
