@@ -23,7 +23,7 @@ write(H), tab(1),
 scrie_lista(T).
              
 afiseaza_fapte :-
-write('Fapte existente Ã®n baza de cunostinte:'),
+write('Fapte existente în baza de cunostinte:'),
 nl,nl, write(' (Atribut,valoare) '), nl,nl,
 listeaza_fapte,nl.
 
@@ -61,7 +61,7 @@ create_replace_output_file(Name) :-
 %%
 
 un_pas(Rasp,OptiuniUrm,MesajUrm):-scop(Atr),(Rasp \== null,intreaba_acum(Rasp) ; true),
-								determina1(Atr,OptiuniUrm,MesajUrm), afiseaza_scop(Atr).
+								determina1(Atr,OptiuniUrm,MesajUrm),afiseaza_solutii. %, afiseaza_scop(Atr).
 
 intreaba_acum(Rasp):-intrebare_curenta(Atr,OptiuniV,MesajV),interogheaza1(Rasp,Atr,MesajV,OptiuniV,Istorie),nl,
 asserta( interogat(av(Atr,_)) ).
@@ -151,7 +151,8 @@ executa([H|T]), H == iesire.
 
 executa([incarca]) :- 
 incarca,!,nl,
-write('Fisierul dorit a fost incarcat'),nl,incarca_descriere('descriere.txt'),!,nl.%create_replace_output_file,!,nl .
+write('Fisierul dorit a fost incarcat'),nl,
+incarca_descriere,!,nl,write('Fisierul dorit a fost incarcat'),nl .%create_replace_output_file,!,nl .
 executa([consulta]) :- 
 scopuri_princ,!.   
 executa([reinitiaza]) :-   %sterge baza de cun : faptele si atr interogate, apoi consult ca sa ia din nou intrb 
@@ -163,17 +164,25 @@ executa([cum|L]) :- cum(L),!.  % pt afis dem scriem: 'cum atribut este valoare..
 executa([iesire]):-!.
 executa([_|_]) :-
 write('Comanda incorecta! '),nl.
-	
+
+sorteaza(L) :-
+	setof(solutie(FC,Val),Atr^Val^Istoric^fapt(av(tipul_buchetului,Val),FC,Istoric),Laux),
+    reverse(Laux,L).
 	
 scopuri_princ :-  % pt pct j trb un setof, cu grupare dupa fc si afisare inversa
-scop(Atr),determina(Atr), afiseaza_scop(Atr),fail. % determina vrea sa det valoarea pt atributul scop; afiseaza ne afis sol
+scop(Atr),determina(Atr),  afiseaza_solutii. % determina vrea sa det valoarea pt atributul scop; afiseaza ne afis sol
 scopuri_princ. % caz de oprire
+%afiseaza_scop(Atr) 
 
 determina(Atr) :-
-av(Atr,Val),
 realizare_scop(av(Atr,_),_,[scop(Atr)]),!.   %ultimul parametru este istoricul 
 determina(_).
+ %IF in loc de ;
+afiseaza_solutii:-
+	sorteaza(L),scrie_lista(L);nl,write('Nu exista solutie'), nl .
+	
 
+/*
 afiseaza_scop(Atr) :-
 nl,fapt(av(Atr,Val),FC,_),
 FC >= 40,scrie_scop(av(Atr,Val),FC),
@@ -186,14 +195,14 @@ scrie_lista(X),tab(2),
 write(' '),
 write('factorul de certitudine este '),
 FC1 is integer(FC),write(FC1).
-
+*/
 realizare_scop(not Scop,Not_FC,Istorie) :-  %poate fi apelat si pt testarea premiselor, nu doar pt aflare scop
 realizare_scop(Scop,FC,Istorie),
 Not_FC is - FC, !.
 
 realizare_scop(Scop,FC,_) :-
-fapt(Scop,FC,_),
-scop=av(Atr,nu_conteaza), !.%in fapt se memoreaza cunostintele ; verificam daca pt acest scop avem deja val
+fapt(Scop, FC, _),
+Scop = av(Atr,nu_conteaza), ! .%in fapt se memoreaza cunostintele ; verificam daca pt acest scop avem deja val
 realizare_scop(Scop,FC,_) :-
 fapt(Scop,FC,_), !.
 
@@ -205,18 +214,18 @@ realizare_scop(Scop,FC_curent,Istorie) :-
 fg(Scop,FC_curent,Istorie). %fg primeste scop si calculeaza fc_curent si istoric
         
 fg(Scop,FC_curent,Istorie) :-
-regula(N, premise(Lista), concluzie(Scop,FC)), %N id-ul regulii; in premise avem structurile av in Lista
+regula(N, premise(Lista),concluzie(Scop,FC)), %N id-ul regulii; in premise avem structurile av in Lista
 demonstreaza(N,Lista,FC_premise,Istorie), %
 ajusteaza(FC,FC_premise,FC_nou),% face produsul, ajusteaza fc-ul regulii in fct de noile info
 actualizeaza(Scop,FC_nou,FC_curent,N),
 FC_curent == 100,!. % daca nu are fc=100, se intoarce si cauta o noua regula 
 fg(Scop,FC,_) :- fapt(Scop,FC,_). 
 
-pot_interoga(av(Atr,_),Istorie) :-
+pot_interoga(av(Atr,_),Istorie) :- 
 not interogat(av(Atr,_)),%verifica daca nu s-a pus deja intrebarea legata de Atr, interogat retine atr care au deja val
 interogabil(Atr,Optiuni,Mesaj), % optiuni si mesajul afisat/intrebarea
 interogheaza(Atr,Mesaj,Optiuni,Istorie),nl,
-asserta( interogat(av(Atr,_)) ). % introduce in lista la inceput atr care a fost interogat
+asserta( interogat(av(Atr,_)) ).%,listing(interogat),nl. % introduce in lista la inceput atr care a fost interogat
 
 cum([]) :- write('Scop? '),nl,    %cerem cum atr val
 write('|:'),citeste_linie(Linie),nl,
@@ -280,23 +289,26 @@ cum_premise([]).
 cum_premise([Scop|X]) :-
 cum(Scop),
 cum_premise(X).
-       /*(Daca o intrebare primeste raspunsul cu valoarea nu_stiu, atunci sistemul expert va sari peste regulile care au nevoie de valoarea acelui atribut (pentru ca nu ne putem baza pe valoarea lui). 
-	   Daca o intrebare primeste raspunsul cu valoarea nu_conteaza, atunci considera testul pentru atributul asociat ca fiind adevarat in orice regula indiferent de valoarea lui.) */
 interogheaza(Atr,Mesaj,[da,nu],Istorie) :-  
-!,write(Mesaj),write('( da, nu, nu_stiu, nu_conteaza )'),nl, %afis intrebarea
+!,write(Mesaj),
+append(['('],[da, nu],Opt1),   
+append(Opt1,[')'],Opt2),
+append(Opt2,[nu_stiu,nu_conteaza],Opt),
+scrie_lista(Opt),
+nl, %afis intrebarea
 de_la_utiliz(X,Istorie,[da,nu,nu_stiu,nu_conteaza]), 
 det_val_fc(X,Val,FC),
 asserta( fapt(av(Atr,Val),FC,[utiliz]) ).
 
 interogheaza(Atr,Mesaj,Optiuni,Istorie) :-
 write(Mesaj),nl,
-citeste_opt(VLista,Optiuni,Istorie), %
+citeste_opt(VLista,Optiuni,Istorie), 
 assert_fapt(Atr,VLista).
-%% treb modificat ca pt atr booleene sa afiseze si optiunile; la restul atr optiunile: nu stiu , nu conteaza LA FINAL
 
-citeste_opt(X,Optiuni,Istorie) :-   %de modificat cu opti ^
-append(['('],Optiuni,Opt1),  %aici mai punem in append(Opt1,['nu stiu, nu conteaza)]',Opt) MODIFICAT 
-append(Opt1,[' nu_stiu, nu_conteaza )'],Opt),
+citeste_opt(X,Optiuni,Istorie) :-   
+append(['('],Optiuni,Opt1),   
+append(Opt1,[')'],Opt2),
+append(Opt2,[nu_stiu,nu_conteaza],Opt),
 scrie_lista(Opt),
 de_la_utiliz(X,Istorie,Opt).
 
@@ -370,20 +382,19 @@ FC is round(X).
 
 
 %%%% INCARCA DESCRIERE
-/*
-incarca_descriere :-
-write('Introduceti numele fisierului care doriti sa fie incarcat: '),nl, write('|:'),read(F),
-file_exists(F),!,incarca_d(F).
-
-incarca_d:-write('Nume incorect de fisier! '),nl,fail.
-*/
-incarca_descriere(F) :-
-retractall(descriere(_,_,_,_)),
-see(F),incarca_descrierea,seen,!.
 
 incarca_descrierea :-
 repeat,citeste_descriere(L),
 proceseaza(L), L==[end_of_file],nl.
+
+incarca_descriere:- nl, 
+write('Introduceti numele fisierului de descriere care doriti sa fie incarcat: '),nl, write('|:'),read(F),
+file_exists(F),!,incarca_descriere(F).
+incarca_descriere:- write('Nume incorect de fisier! '),nl,fail.
+
+incarca_descriere(F) :-
+retractall(descriere(_,_,_,_)),
+see(F),incarca_descrierea,seen,!.
 
 citeste_descriere(L):-
  citeste_linie(Lin), 
@@ -397,10 +408,11 @@ incarca_reguli :-
 repeat,citeste_propozitie(L),
 proceseaza(L),L == [end_of_file],nl.
 
-incarca :-
-write('Introduceti numele fisierului care doriti sa fie incarcat: '),nl, write('|:'),read(F),
+incarca :- nl,
+write('Introduceti numele fisierului de reguli care doriti sa fie incarcat: '),nl, write('|:'),read(F),
 file_exists(F),!,incarca(F).
-incarca:-write('Nume incorect de fisier! '),nl,fail.
+
+incarca:- write('Nume incorect de fisier! '),nl,fail.
 
 incarca(F) :-
 retractall(interogat(_)),retractall(fapt(_,_,_)),
@@ -425,7 +437,10 @@ trad(regula(N,premise(Daca),concluzie(Atunci,F))) --> identificator(N),daca(Daca
 %%% INCA UN TRAD PT DESCRIERE    !!!DE COMPLETAT
 %trad_desc(descriere(Buchet, Cale,ListaFlori,Desc))--> ['{','buchet',':',Buchet,'}','{','imagine',':',Cale,'}'], lista_flori(ListaFlori).
 
-trad(descriere(Buchet, Cale,ListaFlori,Desc)) --> nume_buchet(Buchet),cale(Cale),lista_premise_desc(ListaFlori),desc(Desc).
+trad(descriere(Buchet, Cale,ListaFlori,Desc)) --> nume_buchet(Buchet),
+												cale(Cale),
+												lista_premise_desc(ListaFlori),
+												desc(Desc).
 
 trad('Eroare la parsare'-L,L,_).
 
@@ -458,7 +473,7 @@ lista_premise([Prima|Celalalte]) --> propoz(Prima),[','],lista_premise(Celalalte
 atunci(Atunci,FC) --> propoz(Atunci),[fc,':'],[FC].
 atunci(Atunci,100) --> propoz(Atunci).
 
-propoz(not av(Atr,da)) --> [not,Atr].
+propoz(not av(Atr,da)) --> [Atr,'[','fals',']'].
 propoz(av(Atr,Val)) --> [Atr,e,egal,cu,Val].
 propoz(av(Atr,da)) --> [Atr].
 
@@ -557,9 +572,9 @@ citeste_cuvant(_,Cuvant,Caracter1) :-
 get_code(Caracter),       
 citeste_cuvant(Caracter,Cuvant,Caracter1). 
 
-caracter_cuvant(C):-member(C,[44,59,58,63,33,46,41,40,91,93,123,125,61,45,62]).  %trecem codul pt toate caracterele speciale pe care le avem 
+caracter_cuvant(C):-member(C,[44,59,58,63,33,46,41,40,91,93,123,125,61,45,62,95]).  %trecem codul pt toate caracterele speciale pe care le avem 
 
-% am specificat codurile ASCII pentru , ; : ? ! . ) ( }{ : = - >   FACUT
+% am specificat codurile ASCII pentru , ; : ? ! . ) ] [ ( }{ : = - > _  FACUT
 
 
 caractere_in_interiorul_unui_cuvant(C):-
