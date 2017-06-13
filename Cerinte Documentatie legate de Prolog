@@ -37,3 +37,4 @@ Daca o intrebare primeste raspunsul cu valoarea nu_stiu, atunci sistemul expert 
 peste regulile care au nevoie de valoarea acelui atribut (pentru ca nu ne putem baza pe valoarea lui). 
 Daca o intrebare primeste raspunsul cu valoarea nu_conteaza, atunci considera testul pentru atributul asociat
 ca fiind adevarat in orice regula indiferent de valoarea lui.
+
