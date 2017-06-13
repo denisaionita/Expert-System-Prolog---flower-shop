@@ -3,32 +3,31 @@ scop::tipul_buchetului.
 rg::1
 conditii={
     tip_ocazie e egal cu trista
-
 }
 atunci
-   tip_eveniment e egal cu inmormantare fc:90.
+   tip_parfum e egal cu subtil fc:90.
 
 rg::2
 conditii={
     tip_ocazie e egal cu trista
 }
 atunci
-   tip_parfum e egal cu subtil fc:90.
-
-rg::3
-conditii={
-    tip_ocazie e egal cu trista
-}
-atunci
    gama_culori e egal cu pale fc:90.
 
-rg::4
+rg::3
 conditii={
     scop_aranjament e egal cu decor
 }
 atunci
    buchet_aranjament e egal cu aranjament_floral fc:90.
 
+rg::4
+conditii={
+    tip_ocazie e egal cu trista
+
+}
+atunci
+   tip_eveniment e egal cu inmormantare fc:90.
 rg::5
 conditii={
     tip_eveniment e egal cu inmormantare,
@@ -41,11 +40,15 @@ atunci
 rg::6
 conditii={
     tip_eveniment e egal cu inmormantare, 
-    tip_aranjament e egal cu buchet_inmormantare
+    tip_aranjament e egal cu buchet_inmormantare,
+    are_elem_decorative[fals],
+    continut e egal cu o_singura_floare,
+    floare_preferata e egal cu cale
       
 }
 atunci
     tipul_buchetului e egal cu buchet_cale fc:90.
+
 
 rg::7
 conditii={
@@ -612,17 +615,17 @@ atunci
 
 rg::65
 conditii={
-    tipul_buchetului e egal cu lumanare_botez,
+    tip_aranjament e egal cu lumanare_botez,
     continut e egal cu asortat,
     floare_preferata e egal cu trandafir
 
 }
 atunci
-    tipul_buchetului e egal cu lumanare_botez fc:90.
+    tip_aranjament e egal cu lumanare_botez fc:90.
 
 rg::66
 conditii={
-    tipul_buchetului e egal cu lumanare_nunta,
+    tip_aranjament e egal cu lumanare_nunta,
     continut e egal cu un_tip_floare,
     floare_preferata e egal cu trandafir,
     personalitate e egal cu romantica
@@ -633,7 +636,7 @@ atunci
 
 rg::67
 conditii={
-    tipul_buchetului e egal cu lumanare_nunta,
+    tip_aranjament e egal cu lumanare_nunta,
     continut e egal cu asortat,
     floare_preferata e egal cu trandafir,
     gama_culori e egal cu pale
@@ -644,7 +647,7 @@ atunci
 
 rg::68
 conditii={
-    tipul_buchetului e egal cu lumanare_nunta,
+    tip_aranjament e egal cu lumanare_nunta,
     continut e egal cu asortat,
     floare_preferata e egal cu hortensia
 
@@ -843,6 +846,27 @@ conditii={
 atunci
     tipul_buchetului e egal cu decor_valentine_day fc:90.
 
+rg::88
+conditii={
+    tip_aranjament e egal cu lumanare_nunta,
+    continut e egal cu asortat,
+    floare_preferata e egal cu trandafir,
+    personalitate e egal cu romantica
+
+}
+atunci
+    tipul_buchetului e egal cu lumanare_nunta_romantica fc:90.
+
+rg::89
+conditii={
+    tip_eveniment e egal cu inmormantare, 
+    tip_aranjament e egal cu buchet_inmormantare,
+    are_elem_decorative[fals]
+      
+}
+atunci
+    tipul_buchetului e egal cu buchet_cale fc:80.
+
 ??? tip_ocazie
 raspunsuri posibile: vesela; trista; oficiala
 intrebare 'Pentru ce fel de ocazie doriti sa achizitionati florile? '. 
@@ -860,7 +884,7 @@ raspunsuri posibile: asortat; un_tip_floare
 intrebare 'In functie de tipul de flori, cum ati dori sa arate aranjamentul/buchetul? '. 
 
 ??? floare_preferata 
-raspunsuri posibile: trandafir; crizantema; orhidee; frezie; lalea; iris; hortensie; gerbera
+raspunsuri posibile: trandafir; crizantema; orhidee; frezie; lalea; iris; hortensie; cale; gerbera
 intrebare 'Ce floare preferati dvs sau persoana careia ii daruiti? '. 
 
 ??? e_eveniment
@@ -868,7 +892,7 @@ raspunsuri posibile: da; nu
 intrebare 'Participati la un eveniment? '. 
 
 ??? tip_eveniment
-raspunsuri posibile: petrecere; nunta; botez; intalnire_afaceri; ziua_mamei; valentines_day
+raspunsuri posibile: petrecere; nunta; botez; intalnire_afaceri; ziua_mamei; valentines_day; inmormantare
 intrebare 'Pentru ce tip de eveniment doriti sa cumparati buchetul? '. 
 
 ??? scop_aranjament
@@ -884,7 +908,7 @@ raspunsuri posibile: da; nu
 intrebare 'Doriti sa contina anumite elemente decorative aranjamentul? '. 
 
 ??? elemente_decorative
-raspunsuri posibile: lumanare; panglica; ursulet
+raspunsuri posibile: lumanare; panglica; ursulet; niciunul
 intrebare 'Daca doriti un element decorativ, care ar fi acesta? '. 
 
 ??? sensibilitate_la_miros_puternic
