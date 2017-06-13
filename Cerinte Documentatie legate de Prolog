@@ -1,0 +1,39 @@
+Atentie! cerinte valabile pentru toti (si se puncteaza complet numai daca sunt evidentiate in documentatie - conform cerintelor din etapa realizarii documentatiei):
+
+b.Sa existe minim un caz de raspus al sistemului care sa aiba in istoric minim 3 reguli 
+(exemplu: regula r1 care calculeaza valoarea atributului scop sa aiba printre premise un atribut a1 
+calculat cu ajutorul regulii r2 care sa aiba de asemenea printre premise un atribut calculat cu ajutorul unei reguli r3). 
+De asemenea sa existe si un raspuns cu doar o regula doar la baza, si altul cu 2 reguli (
+Se primeste punctaj complet numai daca este facuta si etapa 2, cu evidentierea arborilor pentru fiecare 
+din cazurile punctate in acest enunt).
+
+**c.Trebuie sa aveti si intrebari cu raspuns boolean (da/nu) si intrebari cu raspuns multiplu.
+(se punctteaza complet numai daca e finalizata etapa 2(partea de enumerare a atributelor)).
+
+**d.In cazul intrebarilor cu raspuns boolean trebuie sa se afiseze si optiunile da/nu.
+
+**e. De asemenea sa existe un caz in care sistemul expert nu da solutii.
+
+**f. Daca sistemul nu da solutii, atunci se va afisa pe ecran un mesaj in care se indica faptul ca nu exista solutii.
+
+**g. Sa existe macar o secventa de raspunsuri la intrebari, prin care se obtine o singura solutie,
+si respectiv o secventa care duce la mai multe solutii posibile.
+
+**h. Sa existe minim un atribut care este necesar doar pentru o parte din solutiile posibile. 
+Aceste atribute vor fi evidentiate in documentatie.  EXISTA, sunt atributele legate de aranjamente : ambalaj, elemente_decorative
+
+**i. Sa existe minim o solutie cu mai multe cai posibile care sa duca la ea 
+(de exemplu doua reguli care stabilesc valoarea atributului scop la acea solutie).
+
+**j. Solutiile (in Prolog) se vor afisa in ordinea descrescatoare a factorului de certitudine.
+
+k. Raspunsurile la intrebari permit existenta unui factor de certitudine
+
+l. Este obligatoriu sa puteti afisa demonstratia pentru raspunsurile date.
+
+m. Sistemul expert sa admita pentru unele intrebari si raspunsurile nu_stiu si nu_conteaza 
+(se va specifica in cerintele individuale cum marcam aceste intrebari).
+Daca o intrebare primeste raspunsul cu valoarea nu_stiu, atunci sistemul expert va sari 
+peste regulile care au nevoie de valoarea acelui atribut (pentru ca nu ne putem baza pe valoarea lui). 
+Daca o intrebare primeste raspunsul cu valoarea nu_conteaza, atunci considera testul pentru atributul asociat
+ca fiind adevarat in orice regula indiferent de valoarea lui.
