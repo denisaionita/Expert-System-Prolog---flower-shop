@@ -110,8 +110,8 @@ prin prospetime si colorit.'}
 
 ----------
 
-{buchet: ornament_botez_elegant}
-{imagine: imagini/ornament_botez_elegant.jpg}
+{buchet: ornament_botez_nunta_elegant}
+{imagine: imagini/ornament_botez_nunta_elegant.jpg}
 {flori:
 -> trandifiri, 5
 -> dendrobium, 1
@@ -121,8 +121,8 @@ Este un aranjament de masa ce va impresiona toti invitatii prin amploare si culo
 
 ----------
 
-{buchet: aranjament_masa_botez}
-{imagine: imagini/aranjament_masa_botez.jpg}
+{buchet: aranjament_masa_botez_nunta}
+{imagine: imagini/aranjament_masa_botez_nunta.jpg}
 {flori:
 -> trandifiri, 3
 -> orhidee, 4
@@ -199,12 +199,12 @@ ursulet de plus. Cadoul este adorabil si irezistibil.'}
 
 ----------
 
-{buchet: decor_8_martie}
-{imagine: imagini/decor_8_martie.jpg}
+{buchet: decor_inima}
+{imagine: imagini/decor_inima.jpg}
 {flori:
 -> trandafiri, 11
 }
-{descriere: 'Inima de trandafiri pentru ziua femeii. 8 martie este un omagiu binemeritat adus celor care ne aduc pe lume. Daruieste 
+{descriere: 'Inima de trandafiri pentru ziua femeii. Daruieste 
 o superba inima din trandafiri pentru a-i transmite adevaratele tale sentimente de iubire. Inima de trandafiri contine 29 trandafiri 
 rosii.'}
 
@@ -241,8 +241,8 @@ aceasta coroana pretioasa si impresionanta prin frumusetea si exoticul compoziti
 
 ----------
 
-{buchet: buchet_inmormantare}
-{imagine: imagini/buchet_inmormantare.jpg}
+{buchet: buchet_cale}
+{imagine: imagini/buchet_cale.jpg}
 {flori:
 -> cale, 6
 }
