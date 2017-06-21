@@ -16,863 +16,782 @@ atunci
 
 rg::3
 conditii={
-    scop_aranjament e egal cu decor
-}
-atunci
-   buchet_aranjament e egal cu aranjament_floral fc:90.
-
-rg::4
-conditii={
     tip_ocazie e egal cu trista
 
 }
 atunci
-   tip_eveniment e egal cu inmormantare fc:90.
+   tip_eveniment_trist e egal cu inmormantare fc:90.
+
+
 rg::5
 conditii={
-    tip_eveniment e egal cu inmormantare,
-    buchet_aranjament e egal cu buchet
-    
+    e_eveniment,
+    tip_eveniment_trist e egal cu inmormantare,
+    buchet_aranjament e egal cu buchet   
 }
 atunci 
     tip_aranjament e egal cu buchet_inmormantare fc:90.
 
 rg::6
 conditii={
-    tip_eveniment e egal cu inmormantare, 
-    tip_aranjament e egal cu buchet_inmormantare,
-    are_elem_decorative[fals],
-    continut e egal cu o_singura_floare,
-    floare_preferata e egal cu cale
-      
+    tip_aranjament e egal cu buchet_inmormantare    
 }
 atunci
     tipul_buchetului e egal cu buchet_cale fc:90.
 
-
 rg::7
 conditii={
-    tip_eveniment e egal cu inmormantare,
-    buchet_aranjament e egal cu aranjament
-    
+    e_eveniment,
+    tip_ocazie e egal cu trista,
+    buchet_aranjament e egal cu aranjament_floral
 }
 atunci 
     tip_aranjament e egal cu coroana fc:90.
 
 rg::8
 conditii={
-    tip_eveniment e egal cu inmormantare,
     tip_aranjament e egal cu coroana,
     dimensiune e egal cu mediu,
+    element_decorativ e egal cu niciunul,
+    tip_parfum e egal cu subtil,
     continut e egal cu un_tip_floare,
-    floare_preferata e egal cu garoafa
-    
+    floare_preferata e egal cu garoafa  
 }
 atunci
     tipul_buchetului e egal cu coroana_garoafe fc:90.
 
 rg::9
 conditii={
-    tip_eveniment e egal cu inmormantare, 
     tip_aranjament e egal cu coroana,
     dimensiune e egal cu mediu,
-    continut e egal cu asortat
-    
-    
+    element_decorativ e egal cu niciunul,
+    continut e egal cu asortat,
+    floare_preferata e egal cu garoafa 
 }
 atunci
-    tipul_buchetului e egal cu coroana_garoafe fc:80.
+    tipul_buchetului e egal cu coroana_garoafe fc:76.
 
 rg::10
 conditii={
-    tip_eveniment e egal cu inmormantare, 
+    tip_ocazie e egal cu trista, 
     tip_aranjament e egal cu coroana,
     dimensiune e egal cu mediu,
+    element_decorativ e egal cu niciunul,
     continut e egal cu un_tip_floare,
     floare_preferata e egal cu crizantema
-    
 }
 atunci
-    tipul_buchetului e egal cu coroana_crizantema fc:90.
+    tipul_buchetului e egal cu coroana_crizantema fc:88.
 
 rg::11
 conditii={
-    tip_eveniment e egal cu inmormantare, 
     tip_aranjament e egal cu coroana,
     dimensiune e egal cu mediu,
-    continut e egal cu asortat  
+    element_decorativ e egal cu niciunul,
+    continut e egal cu asortat,
+    floare_preferata e egal cu crizantema
 }
 atunci
-    tipul_buchetului e egal cu coroana_crizantema fc:80.
+    tipul_buchetului e egal cu coroana_crizantema fc:75.
 
 rg::12
 conditii={
-    tip_eveniment e egal cu inmormantare, 
     tip_aranjament e egal cu coroana,
     dimensiune e egal cu mare,
+    element_decorativ e egal cu niciunul,
     continut e egal cu un_tip_floare,
     floare_preferata e egal cu orhidee
-    
-    
 }
 atunci
-    tipul_buchetului e egal cu coroana_orhidee fc:90.
+    tipul_buchetului e egal cu coroana_orhidee fc:89.
 
 rg::13
 conditii={
-    tip_eveniment e egal cu inmormantare, 
+    tip_ocazie e egal cu trista,
     tip_aranjament e egal cu coroana,
     dimensiune e egal cu mare,
-    continut e egal cu asortat 
+    element_decorativ e egal cu niciunul,
+    continut e egal cu asortat,
+    floare_preferata e egal cu orhidee
 }
 atunci
-    tipul_buchetului e egal cu coroana_orhidee fc:80.
+    tipul_buchetului e egal cu coroana_orhidee fc:78.
 
 rg::14
 conditii={
+    e_eveniment,
+    tip_ocazie e egal cu vesela,
     tip_eveniment e egal cu botez,
-    elemente_decorative e egal cu lumanare
-
+    vrea_elem_decorative,
+    element_decorativ e egal cu lumanare
 }
 atunci
-    tip_aranjament e egal cu lumanare_botez fc:90.
+    tip_aranjament e egal cu lumanare_botez fc:89.
 
 rg::15
 conditii={
+    e_eveniment,
+    tip_ocazie e egal cu vesela,
     tip_eveniment e egal cu nunta,
-    elemente_decorative e egal cu lumanare
-
+    vrea_elem_decorative,
+    element_decorativ e egal cu lumanare
 }
 atunci
-    tip_aranjament e egal cu lumanare_nunta fc:90.
+    tip_aranjament e egal cu lumanare_nunta fc:88.
 
 rg::16
 conditii={
+    e_eveniment,
+    tip_ocazie e egal cu vesela,
+    scop_aranjament e egal cu eveniment_personal,
     tip_eveniment e egal cu nunta,
-    buchet_aranjament e egal cu buchet,
-    scop_aranjament e egal cu eveniment_personal
-
-}
-atunci
-    tip_aranjament e egal cu buchet_mireasa fc:90.
-
-rg::17
-conditii={
-    e_eveniment[fals],
-    buchet_aranjament e egal cu buchet,
-    scop_aranjament e egal cu cadou
-
-}
-atunci
-    tip_aranjament e egal cu buchet_simplu fc:90.
-
-rg::18
-conditii={
-    tip_eveniment e egal cu nunta,
-    buchet_aranjament e egal cu buchet,
-    scop_aranjament e egal cu cadou
-
-}
-atunci
-    tip_aranjament e egal cu buchet_simplu fc:90.
-
-rg::19
-conditii={
-    tip_eveniment e egal cu ziua_mamei,
-    buchet_aranjament e egal cu buchet,
-    scop_aranjament e egal cu cadou
-
-}
-atunci
-    tip_aranjament e egal cu buchet_simplu fc:90.
-
-rg::20
-conditii={
-    tip_eveniment e egal cu valentines_day,
-    buchet_aranjament e egal cu buchet,
-    scop_aranjament e egal cu cadou
-
-}
-atunci
-    tip_aranjament e egal cu buchet_simplu fc:90.
-
-rg::21
-conditii={
-    tip_eveniment e egal cu petrecere,
-    buchet_aranjament e egal cu buchet,
-    scop_aranjament e egal cu cadou
-
-}
-atunci
-    tip_aranjament e egal cu buchet_simplu fc:90.
-
-rg::22
-conditii={
-    tip_ocazie e egal cu oficiala,
-    scop_aranjament e egal cu cadou,
     buchet_aranjament e egal cu buchet
     
 }
 atunci
-    tip_aranjament e egal cu buchet_simplu fc:85.
+    tip_aranjament e egal cu buchet_mireasa fc:89.
 
-rg::23
+rg::17
 conditii={
-    scop_aranjament e egal cu cadou,
+    e_eveniment,
     buchet_aranjament e egal cu buchet,
-    are_elem_decorative[fals]  
+    scop_aranjament e egal cu cadou
 }
 atunci
-    tip_aranjament e egal cu buchet_simplu fc:85.
+    tip_aranjament e egal cu buchet_simplu fc:88.
 
-rg::24
+rg::18
+conditii={
+    e_eveniment[fals],
+    buchet_aranjament e egal cu buchet,
+    scop_aranjament e egal cu cadou
+}
+atunci
+    tip_aranjament e egal cu buchet_simplu fc:86.
+
+rg::19
 conditii={
     sensibilitate_la_miros_puternic
 }
 atunci
-    tip_parfum e egal cu subtil fc:90.
+    tip_parfum e egal cu subtil fc:89.
+
+rg::20
+conditii={
+    personalitate e egal cu conservatoare
+}
+atunci
+    tip_parfum e egal cu subtil fc:83.
+
+rg::21
+conditii={
+    personalitate e egal cu dinamica
+}
+atunci
+    tip_parfum e egal cu fresh fc:86.
+
+rg::22
+conditii={
+    personalitate e egal cu romantica
+}
+atunci
+    tip_parfum e egal cu dulce fc:87.
+
+rg::23
+conditii={
+    personalitate e egal cu romantica
+}
+atunci
+    gama_culori e egal cu aprinse fc:88.
+
+rg::24
+conditii={
+    personalitate e egal cu dinamica
+}
+atunci
+    gama_culori e egal cu vii fc:89.
 
 rg::25
-conditii={
     personalitate e egal cu conservatoare
 }
 atunci
-    tip_parfum e egal cu subtil fc:80.
+    gama_culori e egal cu pale fc:81.
 
 rg::26
-conditii={
-    personalitate e egal cu dinamica
-}
-atunci
-    tip_parfum e egal cu fresh fc:90.
-
-rg::27
-conditii={
-    personalitate e egal cu romantica
-}
-atunci
-    tip_parfum e egal cu dulce fc:90.
-
-rg::28
-conditii={
-    personalitate e egal cu romantica
-}
-atunci
-    gama_culori e egal cu aprinse fc:90.
-
-rg::29
-conditii={
-    personalitate e egal cu dinamica
-}
-atunci
-    gama_culori e egal cu vii fc:90.
-
-rg::30
-conditii={
-    personalitate e egal cu conservatoare
-}
-atunci
-    gama_culori e egal cu pale fc:90.
-
-rg::31
 conditii={
     tip_ocazie e egal cu oficiala
 }
 atunci
-    gama_culori e egal cu pale fc:90.
+    gama_culori e egal cu pale fc:76.
 
-rg::32
+rg::27
 conditii={
     tip_aranjament e egal cu buchet_mireasa,
     tip_parfum e egal cu fresh,
+    element_decorativ e egal cu niciunul,
     continut e egal cu asortat,
     floare_preferata e egal cu frezie
-
 }
 atunci
     tipul_buchetului e egal cu buchet_mireasa_frezii fc:90.
 
-rg::33
+rg::28
 conditii={
     tip_aranjament e egal cu buchet_mireasa,
     tip_parfum e egal cu fresh,
+    element_decorativ e egal cu niciunul,
     continut e egal cu asortat,
     floare_preferata e egal cu lalea
-
 }
 atunci
-    tipul_buchetului e egal cu buchet_mireasa_frezii fc:90.
+    tipul_buchetului e egal cu buchet_mireasa_frezii fc:83.
 
-rg::34
+rg::29
 conditii={
     tip_aranjament e egal cu buchet_mireasa,
     personalitate e egal cu romantica,
+    element_decorativ e egal cu niciunul,
     continut e egal cu asortat,
     floare_preferata e egal cu trandafir
-
 }
 atunci
     tipul_buchetului e egal cu buchet_nunta_romantic fc:90.
 
-rg::35
+rg::30
 conditii={
     tip_aranjament e egal cu buchet_mireasa,
     tip_parfum e egal cu subtil,
+    element_decorativ e egal cu niciunul,
     continut e egal cu asortat,
     floare_preferata e egal cu trandafir
-
 }
 atunci
-    tipul_buchetului e egal cu buchet_nunta_romantic fc:90.
+    tipul_buchetului e egal cu buchet_nunta_romantic fc:82.
 
-rg::36
+rg::31
 conditii={
     tip_aranjament e egal cu buchet_mireasa,
     tip_parfum e egal cu subtil,
+    element_decorativ e egal cu niciunul,
     continut e egal cu asortat,
     floare_preferata e egal cu trandafir
-
 }
 atunci
     tipul_buchetului e egal cu buchet_nunta_wanda fc:80.
 
-rg::37
+rg::32
 conditii={
     tip_aranjament e egal cu buchet_mireasa,
+    tip_parfum e egal cu subtil,
+    element_decorativ e egal cu niciunul,
     continut e egal cu asortat,
     floare_preferata e egal cu orhidee
-
 }
 atunci
-    tipul_buchetului e egal cu buchet_nunta_wanda fc:90.
+    tipul_buchetului e egal cu buchet_nunta_wanda fc:89.
 
-rg::38
+rg::33
 conditii={
     tip_aranjament e egal cu buchet_simplu,
     scop_aranjament e egal cu cadou,
+    element_decorativ e egal cu niciunul,
+    tip_parfum e egal cu dulce
+}
+atunci
+    tipul_buchetului e egal cu buchet_primavara fc:89.
+
+rg::34
+conditii={
+    tip_aranjament e egal cu buchet_simplu,
+    scop_aranjament e egal cu cadou,
+    element_decorativ e egal cu niciunul,
     continut e egal cu asortat,
     floare_preferata e egal cu trandafiri
-
 }
 atunci
-    tipul_buchetului e egal cu buchet_primavara fc:90.
+    tipul_buchetului e egal cu buchet_primavara fc:88.
 
-rg::39
+rg::35
 conditii={
     tip_aranjament e egal cu buchet_simplu,
     scop_aranjament e egal cu cadou,
-    continut e egal cu asortat
+    element_decorativ e egal cu niciunul,
+    continut e egal cu asortat,
+    floare_preferata e egal cu hortensie
 }
 atunci
     tipul_buchetului e egal cu buchet_primavara fc:80.
 
-rg::40
+rg::36
 conditii={
     tip_aranjament e egal cu buchet_simplu,
+    element_decorativ e egal cu niciunul,
     scop_aranjament e egal cu cadou,
+    continut e egal cu un_tip_floare,
     floare_preferata e egal cu iris
 }
 atunci
     tipul_buchetului e egal cu buchet_irisi fc:90.
 
-rg::41
+rg::37
 conditii={
     tip_aranjament e egal cu buchet_simplu,
     scop_aranjament e egal cu cadou,
+    element_decorativ e egal cu niciunul,
+    continut e egal cu asortat,
+    floare_preferata e egal cu iris
 }
 atunci
     tipul_buchetului e egal cu buchet_irisi fc:70.
 
-rg::42
+rg::38
 conditii={
     e_eveniment,
     tip_ocazie e egal cu oficiala,
-    scop_aranjament e egal cu decor,
-    tip_eveniment e egal cu intalnire_afaceri  
+    buchet_aranjament e egal cu aranjament_floral  
 }
 atunci
-    tip_aranjament e egal cu decor_business fc:90.
+    tip_aranjament e egal cu decor fc:87.
 
-rg::43
+rg::39
 conditii={
     e_eveniment,
-    tip_ocazie e egal cu oficiala,
-    scop_aranjament e egal cu cadou,
-    buchet_aranjament e egal cu aranjament_floral
-    
-}
-atunci
-    tip_aranjament e egal cu decor_business fc:80.
-
-rg::44
-conditii={
-    e_eveniment,
-    tip_ocazie e egal cu oficiala,
-    scop_aranjament e egal cu eveniment_personal,
+    tip_ocazie e egal cu oficiala
     buchet_aranjament e egal cu aranjament_floral,
-    tip_eveniment e egal cu intalnire_afaceri
-   
+    scop_aranjament e egal cu decor
 }
 atunci
-    tip_aranjament e egal cu decor_business fc:90.
+    tip_aranjament e egal cu decor fc:91.
 
-rg::45
-conditii={
-    tip_ocazie e egal cu oficiala,
-    buchet_aranjament e egal cu buchet,
-    tip_eveniment e egal cu intalnire_afaceri   
-}
-atunci
-    tip_aranjament e egal cu buchet_simplu fc:90.
-
-rg::46
+rg::40
 conditii={
     e_eveniment[fals],
     buchet_aranjament e egal cu aranjament_floral,
-    scop_aranjament e egal cu decor
-    
+    scop_aranjament e egal cu cadou
 }
 atunci
     tip_aranjament e egal cu decor fc:85.
 
-rg::47
+rg::41
 conditii={
+    e_eveniment,
     buchet_aranjament e egal cu aranjament_floral,
     scop_aranjament e egal cu eveniment_personal
-    
 }
 atunci
-    tip_aranjament e egal cu decor fc:90.
+    tip_aranjament e egal cu decor fc:88.
 
-
-rg::48
+rg::42
 conditii={
-    tip_aranjament e egal cu decor,
+    e_eveniment,
+    tip_ocazie e egal cu vesela,
+    buchet_aranjament e egal cu aranjament_floral,
+    scop_aranjament e egal cu eveniment_personal
+}
+atunci
+    tip_aranjament e egal cu decor fc:89.
+
+rg::43
+conditii={
     tip_eveniment e egal cu petrecere,
+    tip_aranjament e egal cu decor,
+    tip_decor e egal cu vaza,
+    element_decorativ e egal cu niciunul,
+    continut e egal cu un_tip_floare,
     floare_preferata e egal cu cale 
 }
 atunci
-    tipul_buchetului e egal cu aranjament_petrecere_regal fc:90.
+    tipul_buchetului e egal cu aranjament_petrecere_regal fc:89.
 
- rg::49
+rg::44
 conditii={
+    tip_eveniment e egal cu petrecere,
     tip_aranjament e egal cu decor,
-    tip_eveniment e egal cu petrecere
+    element_decorativ e egal cu niciunul,
+    continut e egal cu asortat,
+    floare_preferata e egal cu cale 
 }
 atunci
-    tipul_buchetului e egal cu aranjament_petrecere_regal fc:70.
+    tipul_buchetului e egal cu aranjament_petrecere_regal fc:88.
 
-rg::50
-conditii={
-    tip_aranjament e egal cu decor_business,
-    tip_eveniment e egal cu petrecere 
-}
-atunci
-    tipul_buchetului e egal cu aranjament_petrecere_regal fc:90.
-
-rg::51
+rg::45
 conditii={
     buchet_aranjament e egal cu aranjament_floral,
     scop_aranjament e egal cu decor,
     ambalaj e egal cu simplu
 }
 atunci
-    tip_decor e egal cu vaza fc:90.
+    tip_decor e egal cu vaza fc:88.
 
-rg::52
+rg::46
 conditii={
     buchet_aranjament e egal cu aranjament_floral,
     scop_aranjament e egal cu decor,
     ambalaj e egal cu special
 }
 atunci
-    tip_decor e egal cu cos fc:90.
+    tip_decor e egal cu cos fc:87.
 
-rg::53
+rg::47
 conditii={
     buchet_aranjament e egal cu aranjament_floral,
     scop_aranjament e egal cu decor,
     ambalaj e egal cu clasic
 }
 atunci
-    tip_decor e egal cu ghiveci fc:90.
+    tip_decor e egal cu ghiveci fc:86.
 
-rg::54
+rg::48
 conditii={
-    buchet_aranjament e egal cu aranjament_floral,
+    tip_buchet e egal cu decor,
     scop_aranjament e egal cu cadou,
-    tip_eveniment e egal cu ziua_mamei,
+    tip_eveniment e egal cu '8_martie',
+    element_decorativ e egal cu frunze,
+    continut e egal cu un_tip_floare,
+    floare_preferata e egal cu trandafiri  
+}
+atunci
+    tipul_buchetului e egal cu decor_inima fc:90.
+
+rg::49
+conditii={
+    tip_buchet e egal cu decor,
+    scop_aranjament e egal cu cadou,
+    tip_eveniment e egal cu valentines_day,
+    element_decorativ e egal cu frunze,
+    continut e egal cu un_tip_floare,
+    floare_preferata e egal cu trandafiri  
+}
+atunci
+    tipul_buchetului e egal cu decor_inima fc:90.
+
+rg::50
+conditii={
+    tip_buchet e egal cu decor,
+    scop_aranjament e egal cu cadou,
+    tip_eveniment e egal cu valentines_day,
     continut e egal cu un_tip_floare,
     floare_preferata e egal cu trandafiri
 }
 atunci
-    tipul_buchetului e egal cu decor_8_martie fc:90.
+    tipul_buchetului e egal cu decor_inima fc:89.
 
-rg::55
+rg::51
 conditii={
-    buchet_aranjament e egal cu aranjament_floral,
+    tip_aranjament e egal cu decor,
     scop_aranjament e egal cu cadou,
-    ambalaj e egal cu special,
-    are_elemente_decorative[fals],
+    personalitate e egal cu romantica,
+    ambalaj e egal cu special
+}
+atunci
+    tipul_buchetului e egal cu decor_inima fc:88.
+
+rg::52
+conditii={
+    tip_aranjament e egal cu decor,
+    scop_aranjament e egal cu cadou,
+    vrea_elem_decorative,
+    element_decorativ e egal cu ursulet,
     personalitate e egal cu romantica
 }
 atunci
-    tipul_buchetului e egal cu decor_8_martie fc:80.
+    tipul_buchetului e egal cu decor_valentine_day fc:86.
+
+rg::53
+conditii={
+    tip_aranjament e egal cu decor,
+    scop_aranjament e egal cu cadou,
+    tip_eveniment e egal cu valentines_day
+}
+atunci
+    tipul_buchetului e egal cu decor_valentine_day fc:89.
+
+rg::54
+conditii={
+    tip_aranjament e egal cu decor,
+    tip_eveniment e egal cu intalnire_afaceri
+    tip_decor e egal cu vaza,
+    element_decorativ e egal cu niciunul,
+    continut e egal cu asortat,
+    floare_preferata e egal cu cala
+}
+atunci
+    tipul_buchetului e egal cu aranjament_afaceri_cale fc:90.
+
+rg::55
+conditii={
+    tip_aranjament e egal cu decor,
+    tip_eveniment e egal cu intalnire_afaceri,
+    tip_decor e egal cu vaza,
+    element_decorativ e egal cu niciunul,
+    continut e egal cu o_singura_floare,
+    floare_preferata e egal cu cala
+}
+atunci
+    tipul_buchetului e egal cu aranjament_afaceri_cale fc:70.
 
 rg::56
 conditii={
-    elemente_decorative e egal cu ursulet,
-    buchet_aranjament e egal cu aranjament_floral,
-    scop_aranjament e egal cu cadou,
-    personalitate e egal cu romantica,
-    continut e egal cu o_singura_floare,
-    floare_preferata e egal cu trandafir
-
+    tip_aranjament e egal cu decor,
+    tip_eveniment e egal cu intalnire_afaceri,
+    tip_decor e egal cu cos,
+    vrea_elem_decorative,
+    element_decorativ e egal cu frunze,
+    continut e egal cu un_tip_floare,
+    floare_preferata e egal cu lalea
 }
 atunci
-    tipul_buchetului e egal cu decor_valentine_day fc:80.
+    tipul_buchetului e egal cu decor_business fc:87.
 
 rg::57
 conditii={
-    buchet_aranjament e egal cu aranjament_floral,
-    scop_aranjament e egal cu cadou,
-    tip_eveniment e egal cu valentines_day,
-    continut e egal cu o_singura_floare,
-    floare_preferata e egal cu trandafir
-
+    tip_aranjament e egal cu decor,
+    tip_eveniment e egal cu intalnire_afaceri, 
+    tip_decor e egal cu ghiveci,
+    vrea_elem_decorative,
+    element_decorativ e egal cu frunze,
+    continut e egal cu un_tip_floare,
+    floare_preferata e egal cu lalea
 }
 atunci
-    tipul_buchetului e egal cu decor_valentine_day fc:90.
-
-
+    tipul_buchetului e egal cu decor_business fc:89.
 
 rg::58
 conditii={
-    tip_aranjament e egal cu decor_business,
-    tip_decor e egal cu vaza,
+    tip_aranjament e egal cu decor,
+    tip_eveniment e egal cu intalnire_afaceri, 
+    tip_decor e egal cu ghiveci,
+    vrea_elem_decorative[fals],
     continut e egal cu un_tip_floare,
     floare_preferata e egal cu lalea
-
 }
 atunci
-    tipul_buchetului e egal cu decor_business fc:90.
+    tipul_buchetului e egal cu decor_business fc:68.
 
 rg::59
 conditii={
-    tip_aranjament e egal cu decor_business,
-    tip_decor e egal cu ghiveci,
-    floare_preferata e egal cu cala
-
+    tip_aranjament e egal cu decor,
+    tip_eveniment e egal cu intalnire_business,
+    tip_decor e egal cu cos,
+    vrea_elem_decorative[fals],
+    continut e egal cu asortat,
+    floare_preferata e egal cu lalea
 }
 atunci
-    tipul_buchetului e egal cu aranjament_afaceri_cale fc:90.
+    tipul_buchetului e egal cu decor_business fc:60.
 
 rg::60
 conditii={
-    tip_aranjament e egal cu decor_business,
-    tip_decor e egal cu ghiveci
-
+    e_eveniment,
+    tip_ocazie e egal cu vesela,
+    tip_eveniment e egal cu botez,
+    buchet_aranjament e egal cu aranjament,
+    vrea_elem_decorative,
+    element_decorativ e egal cu lumanare
 }
 atunci
-    tipul_buchetului e egal cu aranjament_afaceri_cale fc:70.
+    tip_aranjament e egal cu lumanare_botez fc:89.
 
 rg::61
 conditii={
-    tip_aranjament e egal cu decor_business,
-    tip_decor e egal cu cos,
-    floare_preferata e egal cu cale
-
+    tip_aranjament e egal cu lumanare_botez,
+    scop_aranjament e egal cu eveniment_personal,
+    continut e egal cu asortat,
+    floare_preferata e egal cu trandafir
 }
 atunci
-    tipul_buchetului e egal cu aranjament_afaceri_cale fc:90.
+    tipul_buchetului e egal cu lumanare_botez fc:88.
 
 rg::62
 conditii={
-    tip_aranjament e egal cu decor_business,
-    tip_decor e egal cu cos
-
+    tip_aranjament e egal cu lumanare_botez,
+    scop_aranjament e egal cu cadou,
+    continut e egal cu asortat,
+    floare_preferata e egal cu trandafir
 }
 atunci
-    tipul_buchetului e egal cu aranjament_afaceri_cale fc:70.
+    tipul_buchetului e egal cu lumanare_botez fc:86.
 
 rg::63
 conditii={
-    tip_aranjament e egal cu decor_business,
-    tip_eveniment e egal cu intalnire_afaceri, 
-    floare_preferata e egal cu lalea
+    tip_aranjament e egal cu lumanare_nunta,
+    scop_aranjament e egal cu eveniment_personal,
+    continut e egal cu un_tip_floare,
+    floare_preferata e egal cu trandafir
 }
 atunci
-    tipul_buchetului e egal cu decor_business fc:90.
+    tipul_buchetului e egal cu lumanare_nunta_romantica fc:87.
 
 rg::64
 conditii={
-    tip_aranjament e egal cu decor,
-    tip_eveniment e egal cu intalnire_business,
-    floare_preferata e egal cu lalea
+    tip_aranjament e egal cu lumanare_nunta,
+    scop_aranjament e egal cu eveniment_personal,
+    personalitate e egal cu romantica
 }
 atunci
-    tipul_buchetului e egal cu decor_business fc:85.
+    tipul_buchetului e egal cu lumanare_nunta_romantica fc:89.
 
 rg::65
 conditii={
-    tip_aranjament e egal cu lumanare_botez,
+    tip_aranjament e egal cu lumanare_nunta,
+    gama_culori e egal cu aprinse,
     continut e egal cu asortat,
     floare_preferata e egal cu trandafir
-
 }
 atunci
-    tip_aranjament e egal cu lumanare_botez fc:90.
+    tipul_buchetului e egal cu lumanare_nunta_mov fc:89.
 
 rg::66
 conditii={
     tip_aranjament e egal cu lumanare_nunta,
-    continut e egal cu un_tip_floare,
-    floare_preferata e egal cu trandafir,
-    personalitate e egal cu romantica
-
-}
-atunci
-    tipul_buchetului e egal cu lumanare_nunta_romantica fc:90.
-
-rg::67
-conditii={
-    tip_aranjament e egal cu lumanare_nunta,
-    continut e egal cu asortat,
-    floare_preferata e egal cu trandafir,
-    gama_culori e egal cu pale
-
-}
-atunci
-    tipul_buchetului e egal cu lumanare_nunta_mov fc:90.
-
-rg::68
-conditii={
-    tip_aranjament e egal cu lumanare_nunta,
+    gama_culori e egal cu pale,
     continut e egal cu asortat,
     floare_preferata e egal cu hortensia
-
 }
 atunci
     tipul_buchetului e egal cu lumanare_nunta_mov fc:88.
+
+rg::67
+conditii={
+    tip_aranjament e egal cu decor,
+    tip_eveniment e egal cu botez,
+    element_decorativ e egal cu niciunul,
+    tip_decor e egal cu ghiveci,
+    continut e egal cu un_tip_floare,
+    floare_preferata e egal cu gerbera
+}
+atunci
+    tipul_buchetului e egal cu ornament_botez_cizma fc:89.
+
+rg::68
+conditii={
+    tip_aranjament e egal cu decor,
+    tip_eveniment e egal cu botez,
+    element_decorativ e egal cu niciunul,
+    tip_decor e egal cu ghiveci,
+    continut e egal cu asortat,
+    floare_preferata e egal cu gerbera
+}
+atunci
+    tipul_buchetului e egal cu ornament_botez_cizma fc:78.
 
 rg::69
 conditii={
     tip_aranjament e egal cu decor,
     tip_eveniment e egal cu botez,
-    tip_decor e egal cu ghiveci,
-    floare_preferata e egal cu gerbera
-
+    tip_decor e egal cu cos,
+    continut e egal cu asortat,
+    floare_preferata e egal cu trandafir
 }
 atunci
-    tipul_buchetului e egal cu ornament_botez_cizma fc:90.
+    tipul_buchetului e egal cu aranjament_masa_botez_nunta fc:89.
 
 rg::70
 conditii={
     tip_aranjament e egal cu decor,
     tip_eveniment e egal cu botez,
-    tip_decor e egal cu ghiveci,
+    tip_decor e egal cu cos,
+    continut e egal cu asortat,
+    floare_preferata e egal cu orhidee
 }
 atunci
-    tipul_buchetului e egal cu ornament_botez_cizma fc:80.
+    tipul_buchetului e egal cu aranjament_masa_botez_nunta fc:87.
 
 rg::71
 conditii={
     tip_aranjament e egal cu decor,
-    tip_eveniment e egal cu botez,
+    tip_eveniment e egal cu nunta,
     tip_decor e egal cu cos,
+    continut e egal cu asortat,
     floare_preferata e egal cu trandafir
 }
 atunci
-    tipul_buchetului e egal cu aranjament_masa_botez_nunta fc:90.
+    tipul_buchetului e egal cu aranjament_masa_botez_nunta fc:89.
 
 rg::72
 conditii={
     tip_aranjament e egal cu decor,
-    tip_eveniment e egal cu botez,
+    tip_eveniment e egal cu nunta,
     tip_decor e egal cu cos,
+    continut e egal cu asortat,
     floare_preferata e egal cu orhidee
 }
 atunci
-    tipul_buchetului e egal cu aranjament_masa_botez_nunta fc:88.
+    tipul_buchetului e egal cu aranjament_masa_botez_nunta fc:87.
 
- rg::73
-conditii={
-    tip_aranjament e egal cu decor,
-    tip_eveniment e egal cu botez,
-    tip_decor e egal cu cos
-}
-atunci
-    tipul_buchetului e egal cu aranjament_masa_botez_nunta fc:80.
-
- rg::74
-conditii={
-    tip_aranjament e egal cu decor,
-    tip_eveniment e egal cu nunta,
-    tip_decor e egal cu cos,
-    floare_preferata e egal cu trandafir
-}
-atunci
-    tipul_buchetului e egal cu aranjament_masa_botez_nunta fc:90.
-
-rg::75
-conditii={
-    tip_aranjament e egal cu decor,
-    tip_eveniment e egal cu nunta,
-    tip_decor e egal cu cos,
-    floare_preferata e egal cu orhidee
-}
-atunci
-    tipul_buchetului e egal cu aranjament_masa_botez_nunta fc:88.
-rg::76
-conditii={
-    tip_aranjament e egal cu decor,
-    tip_eveniment e egal cu nunta,
-    tip_decor e egal cu cos
-}
-atunci
-    tipul_buchetului e egal cu aranjament_masa_botez_nunta fc:80.
-
-rg::77
+rg::73
 conditii={
     tip_aranjament e egal cu decor,
     tip_eveniment e egal cu botez,
     tip_decor e egal cu vaza,
+    continut e egal cu un_tip_floare,
     floare_preferata e egal cu trandafir
-
 }
 atunci
-    tipul_buchetului e egal cu ornament_botez_vaza fc:90.
+    tipul_buchetului e egal cu ornament_botez_vaza fc:87.
+
+rg::74
+conditii={
+    tip_aranjament e egal cu decor,
+    tip_eveniment e egal cu botez,
+    tip_decor e egal cu vaza,
+    continut e egal cu asortat,
+    floare_preferata e egal cu trandafir
+}
+atunci
+    tipul_buchetului e egal cu ornament_botez_vaza fc:77.
+
+rg::75
+conditii={
+    tip_aranjament e egal cu decor,
+    tip_eveniment e egal cu botez,
+    element_decorativ e egal cu niciunul,
+    continut e egal cu asortat,
+    floare_preferata e egal cu trandafir
+}
+atunci
+    tipul_buchetului e egal cu ornament_botez_nunta_elegant fc:89.
+
+rg::76
+conditii={
+    tip_aranjament e egal cu decor,
+    tip_eveniment e egal cu botez,
+    element_decorativ e egal cu niciunul,
+    continut e egal cu un_tip_floare,
+    floare_preferata e egal cu trandafir
+}
+atunci
+    tipul_buchetului e egal cu ornament_botez_nunta_elegant fc:85.
+
+rg::77
+conditii={
+    tip_aranjament e egal cu decor,
+    tip_eveniment e egal cu nunta,
+    element_decorativ e egal cu niciunul,
+    continut e egal cu asortat,
+    floare_preferata e egal cu trandafir
+}
+atunci
+    tipul_buchetului e egal cu ornament_botez_nunta_elegant fc:88.
 
 rg::78
 conditii={
     tip_aranjament e egal cu decor,
-    tip_eveniment e egal cu botez,
-    tip_decor e egal cu vaza
-
-}
-atunci
-    tipul_buchetului e egal cu ornament_botez_vaza fc:80.
-
-rg::79
-conditii={
-    tip_aranjament e egal cu decor,
-    tip_eveniment e egal cu botez,
-    are_elem_decorative[fals],
-    floare_preferata e egal cu trandafir
-
-}
-atunci
-    tipul_buchetului e egal cu ornament_botez_nunta_elegant fc:90.
-
-rg::80
-conditii={
-    tip_aranjament e egal cu decor,
-    tip_eveniment e egal cu botez,
-    are_elem_decorative[fals]
-
-}
-atunci
-    tipul_buchetului e egal cu ornament_botez_nunta_elegant fc:80.
-
-rg::81
-conditii={
-    tip_aranjament e egal cu decor,
     tip_eveniment e egal cu nunta,
-    are_elem_decorative[fals],
+    element_decorativ e egal cu niciunul,
+    continut e egal cu un_tip_floare,
     floare_preferata e egal cu trandafir
-
 }
 atunci
-    tipul_buchetului e egal cu ornament_botez_nunta_elegant fc:90.
+    tipul_buchetului e egal cu ornament_botez_nunta_elegant fc:86.
 
-rg::82
-conditii={
-    tip_aranjament e egal cu decor,
-    tip_eveniment e egal cu nunta,
-    are_elem_decorative[fals]
-
-}
-atunci
-    tipul_buchetului e egal cu ornament_botez_nunta_elegant fc:80.
-
-rg::83
-conditii={
-    scop_aranjament e egal cu cadou,
-    buchet_aranjament e egal cu buchet,
-    elemente_decorative e egal cu lumanare,
-    tip_eveniment e egal cu botez 
-}
-atunci
-    tip_aranjament e egal cu lumanare_botez fc:90.
-
-rg::84
-conditii={
-    scop_aranjament e egal cu eveniment_personal,
-    buchet_aranjament e egal cu buchet,
-    elemente_decorative e egal cu lumanare,
-    tip_eveniment e egal cu botez 
-}
-atunci
-    tip_aranjament e egal cu lumanare_botez fc:90.
-
-rg::85
-conditii={
-    scop_aranjament e egal cu eveniment_personal,
-    buchet_aranjament e egal cu buchet,
-    elemente_decorative e egal cu lumanare,
-    tip_eveniment e egal cu nunta 
-}
-atunci
-    tip_aranjament e egal cu lumanare_nunta fc:90.
-
-rg::86
-conditii={
-    scop_aranjament e egal cu cadou,
-    buchet_aranjament e egal cu buchet,
-    elemente_decorative e egal cu lumanare,
-    tip_eveniment e egal cu nunta 
-}
-atunci
-    tip_aranjament e egal cu lumanare_nunta fc:90.
-
-rg::87
-conditii={
-    buchet_aranjament e egal cu buchet,
-    scop_aranjament e egal cu cadou,
-    tip_eveniment e egal cu valentines_day,
-    elemente_decorative e egal cu ursulet
-
-}
-atunci
-    tipul_buchetului e egal cu decor_valentine_day fc:90.
-
-rg::88
-conditii={
-    tip_aranjament e egal cu lumanare_nunta,
-    continut e egal cu asortat,
-    floare_preferata e egal cu trandafir,
-    personalitate e egal cu romantica
-
-}
-atunci
-    tipul_buchetului e egal cu lumanare_nunta_romantica fc:90.
-
-rg::89
-conditii={
-    tip_eveniment e egal cu inmormantare, 
-    tip_aranjament e egal cu buchet_inmormantare,
-    are_elem_decorative[fals]
-      
-}
-atunci
-    tipul_buchetului e egal cu buchet_cale fc:80.
 
 ??? tip_ocazie
 raspunsuri posibile: vesela; trista; oficiala
 intrebare 'Pentru ce fel de ocazie doriti sa achizitionati florile? '. 
 
 ??? buchet_aranjament
-raspunsuri posibile: buchet; aranjament
+raspunsuri posibile: buchet; aranjament_floral
 intrebare 'Doriti un buchet sau un aranjament? '. 
 
 ??? dimensiune
@@ -884,7 +803,7 @@ raspunsuri posibile: asortat; un_tip_floare
 intrebare 'In functie de tipul de flori, cum ati dori sa arate aranjamentul/buchetul? '. 
 
 ??? floare_preferata 
-raspunsuri posibile: trandafir; crizantema; orhidee; frezie; lalea; iris; hortensie; cale; gerbera
+raspunsuri posibile: trandafir; crizantema; orhidee; frezie; lalea; iris; hortensie; cale; gerbera; liliac
 intrebare 'Ce floare preferati dvs sau persoana careia ii daruiti? '. 
 
 ??? e_eveniment
@@ -892,8 +811,8 @@ raspunsuri posibile: da; nu
 intrebare 'Participati la un eveniment? '. 
 
 ??? tip_eveniment
-raspunsuri posibile: petrecere; nunta; botez; intalnire_afaceri; ziua_mamei; valentines_day; inmormantare
-intrebare 'Pentru ce tip de eveniment doriti sa cumparati buchetul? '. 
+raspunsuri posibile: petrecere; nunta; botez; intalnire_afaceri; '8_martie'; valentines_day; inmormantare
+intrebare 'Pentru ce eveniment doriti sa cumparati buchetul? '. 
 
 ??? scop_aranjament
 raspunsuri posibile: cadou; decor; eveniment_personal
@@ -903,12 +822,12 @@ intrebare 'Cu ce scop doriti sa cumparati aranjamentul/buchetul? '.
 raspunsuri posibile: simplu; special; clasic
 intrebare 'Ce fel de ambalaj ati dori? '. 
 
-??? are_elem_decorative
+??? vrea_elem_decorative
 raspunsuri posibile: da; nu
 intrebare 'Doriti sa contina anumite elemente decorative aranjamentul? '. 
 
-??? elemente_decorative
-raspunsuri posibile: lumanare; panglica; ursulet; niciunul
+??? element_decorativ
+raspunsuri posibile: lumanare; ursulet; frunze; niciunul  
 intrebare 'Daca doriti un element decorativ, care ar fi acesta? '. 
 
 ??? sensibilitate_la_miros_puternic

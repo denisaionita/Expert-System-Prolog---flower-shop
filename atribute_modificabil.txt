@@ -10,6 +10,8 @@ Atribute deduse:
      Depinde de : scop, ambalaj.
 4.	Gama_culori : pale, aprinse, vii
     Depinde de: personalitate, tip_ocazie.
+5. Tip_eveniment_trist: trist
+  depinde de tip_ocazie
 Atribute date de utilizator :
 5.	Continut : asortat, un_tip_floare.
 6.	Floare preferata: trandafir, frezie, orhidee, lalea, cala, crizantema, gerbera, iris, hortensie.
@@ -18,11 +20,10 @@ Atribute date de utilizator :
 9.	E_eveniment , Boolean : da/nu .
 10.	Buchet_aranjament: buchet, aranjament_floral.
 11.	Scop_aranjament : cadou, décor, eveniment_personal
-12.	Tip_eveniment : petrece, nunta, botez, intalnire_afaceri, ziua_mamei, valentine’s day, inmormantare.
+12.	Tip_eveniment : petrecere, nunta, botez, intalnire_afaceri, ziua_mamei, valentine’s day, inmormantare.
 13.	Ambalaj : simplu, special, clasic.
 14. vrea_elem_decorative: boolean, da/nu.
 15.	Element_decorativ : lumanare, panglica, ursulet, lipsa.
 16.	Dimensiune : mic, mare, mediu.
 17.	Personalitate : dinamica, conservatoare, romantica.
-18. vrea_element_decorativ : da/nu.
 
