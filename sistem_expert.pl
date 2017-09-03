@@ -48,17 +48,38 @@ loop_through_list([H|T]):-
 	
 loop_through_list([]).
 
+loop_through_list_dem(Stream, []).
+
+loop_through_list_dem(Stream,[H|T]):-
+	write(Stream,H),
+	write(Stream,' '),
+	loop_through_list_dem(Stream,T).
+	
+loop_through_list_dem(Stream,[]).
+
 scrie_fis_ad(Fisout,[H|T]):- open(Fisout,append,Stream),
                        loop_through_list(Stream,[H|T]),
+					
                        close(Stream).
+					   
+
+scrie_fis_ad(Fisout,[]).
 
 scrie_fis_ad(Fisout,Write):- open(Fisout,append,Stream),
                        write(Stream,Write),
 					   nl(Stream),
+					   
                        close(Stream).
 
-
-					  
+scrie_fis_dem(Fisout,[H|T]):- open(Fisout,append,Stream),
+                       loop_through_list_dem(Stream,[H|T]),
+                       close(Stream).
+scrie_fis_dem(Fisout,Write):- open(Fisout,append,Stream),
+                       write(Stream,Write),
+					   nl(Stream),
+                      close(Stream).
+scrie_fis_dem(Fisout,[]).
+					   
 genereaza_timestamp :-
 	findall(X,descriere(X,_,_,_),Lsol),
 	now(Nr),number_chars(Nr,ListNr),atom_chars(Laux,ListNr),atom_concat(Laux,'.txt',L),atom_concat(solutii_posibile_,L,NumeFisier),
@@ -85,6 +106,19 @@ scrie_in_fisier(Fis,Output) :-
 	write(Stream,Output),
 	nl(Stream),
     close(Stream).
+	
+	
+sterge_fisiere:-
+file_member_of_directory('demonstratii', 'demonstratie*', _, FilePath),
+delete_file(FilePath), sterge_fisiere.
+
+sterge_fisiere.
+
+%revine in folderul radacina al proiectului si sterge directorul 
+sterge_director :-
+current_directory(_, 'c:/users/denisa123/desktop/se_proiect/output_flori'),
+directory_exists('demonstratii'),
+delete_directory('demonstratii').
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
@@ -100,85 +134,6 @@ create_replace_output_file(FolderFinal) :-
 	.
 	 
 	 
-%%
-/*
-un_pas(Rasp,OptiuniUrm,MesajUrm):-scop(Atr),(Rasp \== null,intreaba_acum(Rasp) ; true),
-								determina1(Atr,OptiuniUrm,MesajUrm),afiseaza_solutii. %, afiseaza_scop(Atr).
-
-intreaba_acum(Rasp):-intrebare_curenta(Atr,OptiuniV,MesajV),interogheaza1(Rasp,Atr,MesajV,OptiuniV,Istorie),nl,
-asserta( interogat(av(Atr,_)) ).
-
-interogheaza1(X,Atr,Mesaj,[da,nu],Istorie) :-
-!,de_la_utiliz1(X,Istorie,[da,nu]),
-det_val_fc(X,Val,FC),
-asserta( fapt(av(Atr,Val),FC,[utiliz]) ).
-
-interogheaza1(VLista,Atr,Mesaj,Optiuni,Istorie) :-
-de_la_utiliz1(VLista,Optiuni,Istorie),
-assert_fapt(Atr,VLista).
-
-
-%de_la_utiliz1(+Rasp,?Istorie,+Lista_opt)
-de_la_utiliz1(X,Istorie,Lista_opt) :-
-proceseaza_raspuns([X],Istorie,Lista_opt).
-
-
-determina1(Atr,OptiuniUrm,MesajUrm) :-
-realizare_scop1(av(Atr,_),_,[scop(Atr)],OptiuniUrm,MesajUrm),!.
-determina1(_,_,_).
-
-realizare_scop1(not Scop,Not_FC,Istorie,OptiuniUrm,MesajUrm) :-
-realizare_scop1(Scop,FC,Istorie,OptiuniUrm,MesajUrm),
-Not_FC is - FC, !.
-realizare_scop1(Scop,FC,_,_,_) :-
-fapt(Scop,FC,_), !.
-realizare_scop1(Scop,FC,Istorie,OptiuniUrm,MesajUrm) :-
-pot_interoga1(Scop,Istorie,OptiuniUrm,MesajUrm),
-!.
-
-%realizare_scop1(Scop,FC,Istorie,OptiuniUrm,MesajUrm).
-
-realizare_scop1(Scop,FC_curent,Istorie,OptiuniUrm,MesajUrm) :-
-fg1(Scop,FC_curent,Istorie,OptiuniUrm,MesajUrm).
-
-
-pot_interoga1(av(Atr,_),Istorie, Optiuni, Mesaj) :-
-not interogat(av(Atr,_)),
-interogabil(Atr,Optiuni,Mesaj),
-retractall(intrebare_curenta(_,_,_)),
-assert(intrebare_curenta(Atr, Optiuni,Mesaj)),!.
-
-
-pornire1:-retractall(interogat(_)),
-retractall(fapt(_,_,_)),
-retractall(intrebare_curenta(_,_,_)),
-retractall(scop(_)),
-retractall(interogabil(_)),
-retractall(regula(_,_,_)),
-incarca('sist_expert.txt').
-
-
-fg1(Scop,FC_curent,Istorie,OptiuniUrm,MesajUrm) :-
-regula(N, premise(Lista), concluzie(Scop,FC)),
-demonstreaza1(N,Lista,FC_premise,Istorie,OptiuniUrm,MesajUrm),
-(nonvar(FC), nonvar(FC_premise),ajusteaza(FC,FC_premise,FC_nou),
-actualizeaza(Scop,FC_nou,FC_curent,N),
-FC_curent == 100; true),!.
-fg1(Scop,FC,_,_,_) :- fapt(Scop,FC,_).
-
-%afiseaza_demonstratii 
-
-demonstreaza1(N,ListaPremise,Val_finala,Istorie,OptiuniUrm,MesajUrm) :-
-dem1(ListaPremise,100,Val_finala,[N|Istorie],OptiuniUrm,MesajUrm),!.
-
-dem1([],Val_finala,Val_finala,_,_,_).
-dem1([H|T],Val_actuala,Val_finala,Istorie,OptiuniUrm,MesajUrm) :-
-realizare_scop1(H,FC,Istorie,OptiuniUrm,MesajUrm),
-(nonvar(FC),
-Val_interm is min(Val_actuala,FC),
-Val_interm >= 20,
-dem1(T,Val_interm,Val_finala,Istorie,OptiuniUrm,MesajUrm) ;true).
-*/
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -190,23 +145,35 @@ repeat,
 write('Introduceti una din urmatoarele optiuni: '),
 nl,nl,
 write(' (Incarca Consulta Reinitiaza  Afisare_fapte Afis_buchete Cum   Iesire) '),
-nl,nl,write('|: '),citeste_linie([H|T]),
+nl,nl,write('|: '),/*sterge_fisiere,sterge_director,*/ citeste_linie([H|T]),
 executa([H|T]), H == iesire.
 
 executa([incarca]) :- 
-current_directory(_,'c:/users/denisa123/desktop/se_proiect/' ),incarca('reguli.txt'),incarca_descriere('descriere.txt'),create_replace_output_file(DirLog),current_directory(_,'c:/users/denisa123/desktop/se_proiect/output_flori'),genereaza_timestamp,current_directory(_,DirLog),!,nl,
+current_directory(_,'c:/users/denisa123/desktop/se_proiect/' ),
+incarca('reguli.txt'),incarca_descriere('descriere.txt'),create_replace_output_file(DirLog),
+current_directory(_,'c:/users/denisa123/desktop/se_proiect/output_flori'),genereaza_timestamp,!,nl,
 write('Fisierele de reguli si descriere au fost incarcate'),nl, nl,!,nl .
-executa([consulta]) :-  scopuri_princ,current_directory(_,'c:/users/denisa123/desktop/se_proiect/'),!.   
+
+executa([consulta]) :-  current_directory(_,'c:/users/denisa123/desktop/se_proiect/'),scopuri_princ,current_directory(_,'c:/users/denisa123/desktop/se_proiect/'),!. 
+  
 executa([reinitiaza]) :-   %sterge baza de cun : faptele si atr interogate, apoi consult ca sa ia din nou intrb 
-trace,current_directory(_,'c:/users/denisa123/desktop/se_proiect/output_flori'),directory_exists('demonstratii'), delete_directory('demonstratii',if_nonempy(delete)),notrace,
+/*current_directory(_,'c:/users/denisa123/desktop/se_proiect/output_flori'),sterge_director,*/
 retractall(interogat(_)),
 retractall(fapt(_,_,_)),
-close_all_streams, ! .
+close_all_streams,!; 
+retractall(interogat(_)),
+retractall(fapt(_,_,_)),
+close_all_streams,! .
+
 executa([afisare_fapte]) :-
 afiseaza_fapte,!.
+
 executa([cum|L]) :- cum(L),!.  % pt afis dem scriem: 'cum atribut este valoare...'
+
 executa([afis_buchete]) :- afiseaza_buchetele,nl,!.
-executa([iesire]):- trace,current_directory(_,'c:/users/denisa123/desktop/se_proiect/output_flori'),directory_exists('demonstratii'), delete_directory('demonstratii',if_nonempy(delete)),notrace,close_all_streams; close_all_streams,!.
+
+executa([iesire]):- /* current_directory(_,'c:/users/denisa123/desktop/se_proiect/output_flori'),directory_exists('demonstratii'), delete_directory('demonstratii'),close_all_streams;*/ close_all_streams,!.
+
 executa([_|_]) :-
 write('Comanda incorecta! '),nl.
 
@@ -222,56 +189,85 @@ meniu_descriere :-
 	nl,nl,write('|: |: '),citeste_linie([H|T]),
 	executa_descriere([H|T]), H == revenire.
 
-executa_descriere([descriere]):- sorteaza(L),nl,afiseaza_descrieri_solutii(L),nl,!.
+executa_descriere([descriere]):- 
+	sorteaza(L),afiseaza_descrieri_solutii(L),nl,!.
 
-executa_descriere([flori_componente]):- sorteaza(L), nl,afiseaza_flori_solutii(L),nl,!.
+executa_descriere([flori_componente]):- 
+	sorteaza(L), nl,
+	afiseaza_flori_solutii(L),nl,!.
 
 executa_descriere([revenire]).
 
 executa_descriere([_|_]) :-
 nl,write('Comanda incorecta! '), nl .
 
-scopuri_princ :-  % pt pct j trb un setof, cu grupare dupa fc si afisare inversa
-scop(Atr),determina(Atr),trace,afiseaza_solutii(L),scrie_demonstratii(L),notrace,scrie_fis_ad('fisiere_log.txt',L),scrie_fis_ad('fisiere_log.txt','=========================='),meniu_descriere ;scrie_fis_ad('fisiere_log.txt','==========================').
+scopuri_princ :-  
+	scop(Atr),determina(Atr),
+	afiseaza_solutii(L),L\=[],!,
+	reverse(L,Linv),current_directory(_,'c:/users/denisa123/desktop/se_proiect/output_flori/demonstratii'),scrie_demonstratii1(Linv),
+	current_directory(_, 'c:/users/denisa123/desktop/se_proiect/output_flori/fisiere_log'),
+	scrie_fis_ad('log.txt',L),
+	scrie_fis_ad('log.txt','=========================='),
+	meniu_descriere;
+	current_directory(_, 'c:/users/denisa123/desktop/se_proiect/output_flori/fisiere_log'),
+	scrie_fis_ad('log.txt','==========================').
 % determina vrea sa det valoarea pt atributul scop; afiseaza ne afis sol
 scopuri_princ. % caz de oprire
 
+scrie_demonstratii1([solutie(FC,Atr,Val)|T]):- %scriu dem in fisier
+	atom_concat(demonstratie,'_',Laux1), atom_concat(Laux1,Val,Laux),atom_concat(Laux,'(max).txt',NumeFisier),tell(NumeFisier),cum(av(Atr,Val)),told,scrie_demonstratii1(T).
+	
+scrie_demonstratii1([]).
 %afiseaza_scop(Atr) 
-%!!!! De modificat nr de flori din float in INT 
+
 determina(Atr) :-
 realizare_scop(av(Atr,_),_,[scop(Atr)]),!.   %ultimul parametru este istoricul 
 determina(_).
  
-sorteaza(L) :-
-	setof(solutie(Val,FC),Atr^Istoric^Val^(fapt(av(Atr,Val),FC,Istoric),Atr== tipul_buchetului),Laux),
-    reverse(Laux,L).
+sorteaza(Lscop) :- %ordoneaza solutiile descrescator dupa fc
+    setof(solutie(FC,Atr,Val),Istoric^fapt(av(Atr,Val),FC,Istoric),Laux),
+    reverse(Laux,L),
+	findall(solutie(FC,tipul_buchetului,Val), member(solutie(FC,tipul_buchetului,Val),L),Lscop).
 	
-afiseaza_solutii(L) :-
-	sorteaza(L),nl,scrie_lista(L),nl ;nl,write('Nu exista solutie'), nl ,fail.
+afiseaza_solutii(L) :- %afiseaza solutiile pe ecran, aici le si sortam inainte de afisare
+	sorteaza(L),nl,
+	(length(L,Length),Length==0,write('Nu exista solutie'), nl,!;
+	nl,afiseaza_scop(L),nl ).
 
-afiseaza_descrieri_solutii([solutie(Val,FC)|T]):-
+afiseaza_descrieri_solutii([solutie(FC,Atr,Val)|T]):-
 	descriere(Val,_,_,Ldesc),
-    write('Buchet: '),write(Val),nl,
+    nl,write('Buchet: '),write(Val),nl,
 	write(Ldesc),nl, afiseaza_descrieri_solutii(T) .
 
 afiseaza_descrieri_solutii([]).
 	
-afiseaza_flori_solutii([solutie(Val,FC)|T]):-
+afiseaza_flori_solutii([solutie(FC,Atr,Val)|T]):-
 	%findall(X,(descriere(Nume,_,X,_), Nume==Val),Lflori),
 	descriere(Val,_,Lflori,_),
 	write('Buchet: '),write(Val),nl,
 	write('Flori componente:'),nl,
 	lista_flori(Lflori),
-	write('-----------------------'),nl .
+	write('-----------------------'),nl ,
     afiseaza_flori_solutii(T).
 	 
 afiseaza_flori_solutii([]).
 
 lista_flori([flori(Nume,Numar)|T]):-
-	write('+ '), write(Numar), write(' '), write(Nume),nl, lista_flori(T).
+	write('+ '), NR is integer(Numar),write(NR), write(' '), write(Nume),nl, lista_flori(T).
 	
 lista_flori([]).
 
+afiseaza_scop([solutie(FC,Atr,Val)|T]) :- %daca solutia are fc< 60 nu e considerata solutie si nu se afiseaza; foloseste scrie_scop ca sa afiseze formatat
+	FC >= 60,scrie_scop(av(Atr,Val),FC),
+	nl, afiseaza_scop(T),fail.
+afiseaza_scop(_):- nl.
+
+scrie_scop(av(Atr,Val),FC) :-
+transformare(av(Atr,Val), X),
+scrie_lista(X),tab(2),
+write(' '),
+write('factorul de certitudine este '),
+FC1 is integer(FC),write(FC1).
 /*
 afiseaza_scop(Atr) :-
 nl,fapt(av(Atr,Val),FC,_),
@@ -285,7 +281,9 @@ scrie_lista(X),tab(2),
 write(' '),
 write('factorul de certitudine este '),
 FC1 is integer(FC),write(FC1).
+
 */
+
 realizare_scop(not Scop,Not_FC,Istorie) :-  %poate fi apelat si pt testarea premiselor, nu doar pt aflare scop
 realizare_scop(Scop,FC,Istorie),
 Not_FC is - FC, !.
@@ -303,7 +301,7 @@ realizare_scop(Scop,FC_curent,Istorie) :-
 fg(Scop,FC_curent,Istorie). %fg primeste scop si calculeaza fc_curent si istoric
         
 fg(Scop,FC_curent,Istorie) :-
-regula(N, premise(Lista),concluzie(Scop,FC)),write(N),nl, %N id-ul regulii; in premise avem structurile av in Lista
+regula(N, premise(Lista),concluzie(Scop,FC)), %N id-ul regulii; in premise avem structurile av in Lista
 demonstreaza(N,Lista,FC_premise,Istorie), %
 ajusteaza(FC,FC_premise,FC_nou),% face produsul, ajusteaza fc-ul regulii in fct de noile info
 actualizeaza(Scop,FC_nou,FC_curent,N),
@@ -318,27 +316,27 @@ asserta( interogat(av(Atr,_)) ).%,listing(interogat),nl. % introduce in lista la
 
 %%%%% SCRIU IN FISIERUL DE DEMONSTRATII 
 
-scrie_demonstratii([solutie(Nume,FC)]):- 
+scrie_demonstratii([solutie(FC,tipul_buchetului,Nume)]):- 
 	atom_concat(demonstratie,'_',Laux1), atom_concat(Laux1,Nume,Laux),atom_concat(Laux,'(max).txt',NumeFisier),cum_dem_fisier(av(tipul_buchetului,Nume),NumeFisier),!.
 
-scrie_demonstratii([solutie(Nume,FC)|T]):-
+scrie_demonstratii([solutie(FC,tipul_buchetului,Nume)|T]):-
 	atom_concat(demonstratie,'_',Laux1), atom_concat(Laux1,Nume,Laux),atom_concat(Laux,'.txt',NumeFisier),cum_dem_fisier(av(tipul_buchetului,Nume),NumeFisier),scrie_demonstratii(T),!.
 
 scrie_demonstratii([]).
 
-cum_dem_fisier(not Scop,NumeFisier) :- %cazul pt fc negativ 
-fapt(Scop,FC,Reguli),% al 3lea par de istoricul
-lista_float_int(Reguli,Reguli1),
-FC < -20,transformare(not Scop,PG),
-append(PG,[a,fost,derivat,cu, ajutorul, 'regulilor: '|Reguli1],LL),
-scrie_fis_ad(NumeFisier,LL),afis_reguli_dem_fisier(Reguli,NumeFisier),fail.
+cum_dem_fisier(not Scop,NumeFisier) :- 
+	fapt(Scop,FC,Reguli),
+	lista_float_int(Reguli,Reguli1),
+	FC < -20,transformare(not Scop,PG),
+	append(PG,[a,fost,derivat,cu, ajutorul, 'regulilor: '|Reguli1],LL),
+	scrie_fis_dem(NumeFisier,LL),afis_reguli_dem_fisier(Reguli,NumeFisier),fail.
 
 cum_dem_fisier(Scop,NumeFisier) :-   
 fapt(Scop,FC,Reguli),
 lista_float_int(Reguli,Reguli1),
 FC > 20,transformare(Scop,PG),
 append(PG,[a,fost,derivat,cu, ajutorul, 'regulilor: '|Reguli1],LL),
-scrie_fis_ad(NumeFisier,LL),afis_reguli_dem_fisier(Reguli,NumeFisier),
+scrie_fis_dem(NumeFisier,LL),afis_reguli_dem_fisier(Reguli,NumeFisier),
 fail.
 cum_dem_fisier(_,_).
 
@@ -351,20 +349,22 @@ afis_reguli_dem_fisier(X,NumeFisier).
 afis_regula_dem_fisier(N,NumeFisier) :-
 regula(N, premise(Lista_premise), concluzie(Scop,FC)), 
 NN is integer(N),
-scrie_fis_ad(NumeFisier,['rg::',NN]),  
-scrie_fis_ad(NumeFisier,[' conditii={']),
-scrie_lista_premise_fis(Lista_premise), 
-scrie_fis_ad(NumeFisier,['}','\n']),
-scrie_fis_ad(NumeFisier,['atunci','\n']),
+scrie_fis_dem(NumeFisier,['rg::',NN]), 
+scrie_fis_dem(NumeFisier,' '),
+scrie_fis_dem(NumeFisier,' conditii={'),
+scrie_lista_premise_fis(Lista_premise,NumeFisier), 
+scrie_fis_dem(NumeFisier,'}'),
+scrie_fis_dem(NumeFisier,'atunci'),
 transformare2(Scop,Scop_tr), 
 append(['   '],Scop_tr,L1),
 FC1 is integer(FC),append(L1,['fc:',FC1],LL),
-scrie_fis_ad(NumeFisier,LL).
+scrie_fis_dem(NumeFisier,LL),scrie_fis_dem(NumeFisier,' ').
 
 scrie_lista_premise_fis([],_).
 scrie_lista_premise_fis([H|T],NumeFisier) :-
 transformare2(H,H_tr),
-scrie_fis_ad(NumeFisier,H_tr),
+scrie_fis_dem(NumeFisier,H_tr),
+scrie_fis_dem(NumeFisier,' '),
 scrie_lista_premise_fis(T,NumeFisier).
 
 premisele_dem_fisier(N,NumeFisier) :-
@@ -404,21 +404,21 @@ cum(_).
 
 afis_reguli([]).
 afis_reguli([N|X]) :-
-afis_regula(N),
-premisele(N),
+	afis_regula(N),
+	premisele(N),
 afis_reguli(X).
 afis_regula(N) :-
-regula(N, premise(Lista_premise), concluzie(Scop,FC)), %premise(Lista_premise) este lista de av-uri 
-NN is integer(N),
-scrie_lista(['rg::',NN]),  %aici modificam pt F, la afisare MODIFICAT
-scrie_lista([' conditii={']),
-scrie_lista_premise(Lista_premise), %si in pred asta modificam
-scrie_lista(['}','\n']),
-scrie_lista(['atunci','\n']),
-transformare2(Scop,Scop_tr), %afis concluzia
-append(['   '],Scop_tr,L1),
-FC1 is integer(FC),append(L1,['fc:',FC1],LL),
-scrie_lista(LL),nl.
+	regula(N, premise(Lista_premise), concluzie(Scop,FC)), %premise(Lista_premise) este lista de av-uri 
+	NN is integer(N),
+	scrie_lista(['rg::',NN]),  %aici modificam pt F, la afisare MODIFICAT
+	scrie_lista([' conditii={']),
+	scrie_lista_premise(Lista_premise), %si in pred asta modificam
+	scrie_lista(['}','\n']),
+	scrie_lista(['atunci','\n']),
+	transformare2(Scop,Scop_tr), %afis concluzia
+	append(['   '],Scop_tr,L1),
+	FC1 is integer(FC),append(L1,['fc:',FC1],LL),
+	scrie_lista(LL),nl.
 
 scrie_lista_premise([]).
 scrie_lista_premise([H|T]) :-
@@ -459,34 +459,35 @@ atom_concat(Atr,=,Aux),atom_concat(Aux,Val,Interogare),
 scrie_fis_ad('log.txt',Interogare).
 
 interogheaza(Atr,Mesaj,Optiuni,Istorie) :-
-write(Mesaj),nl,
-citeste_opt(VLista,Optiuni,Istorie),
-assert_fapt(Atr,VLista).
+	write(Mesaj),nl,
+	citeste_opt(VLista,Optiuni,Istorie),
+	assert_fapt(Atr,VLista).
 
 citeste_opt(X,Optiuni,Istorie) :-   
-append(['('],Optiuni,Opt1),   
-append(Opt1,[')'],Opt2),
-append(Opt2,[nu_stiu,nu_conteaza],Opt),
-scrie_lista(Opt),
-de_la_utiliz(X,Istorie,Opt).
+	append(['('],Optiuni,Opt1),   
+	append(Opt1,[')'],Opt2),
+	append(Opt2,[nu_stiu,nu_conteaza],Opt),
+	scrie_lista(Opt),
+	de_la_utiliz(X,Istorie,Opt).
 
 de_la_utiliz(X,Istorie,Lista_opt) :-
-repeat,write(': '),citeste_linie(X),
-proceseaza_raspuns(X,Istorie,Lista_opt). %verif daca este in lista de optiuni 
+	repeat,write(': '),citeste_linie(X),
+	proceseaza_raspuns(X,Istorie,Lista_opt). %verif daca este in lista de optiuni 
 
-proceseaza_raspuns([de_ce],Istorie,_) :- nl,afis_istorie(Istorie),!,fail.
+proceseaza_raspuns([de_ce],Istorie,_) :-
+	nl,afis_istorie(Istorie),!,fail.
 
 proceseaza_raspuns([X],_,Lista_opt):-   %verif daca este in lista de optiuni
-member(X,Lista_opt).
+	member(X,Lista_opt).
 proceseaza_raspuns([X,fc,FC],_,Lista_opt):-
-member(X,Lista_opt),float(FC).
+	member(X,Lista_opt),float(FC).
 
 assert_fapt(Atr,[Val,fc,FC]) :-
-!,asserta( fapt(av(Atr,Val),FC,[utiliz]) ),atom_concat(Atr,=,Aux),atom_concat(Aux,Val,Interogare),
-scrie_fis_ad('log.txt',Interogare).
+	!,asserta( fapt(av(Atr,Val),FC,[utiliz]) ),atom_concat(Atr,=,Aux),atom_concat(Aux,Val,Interogare),
+	scrie_fis_ad('log.txt',Interogare).
 assert_fapt(Atr,[Val]) :-
-asserta( fapt(av(Atr,Val),100,[utiliz])), atom_concat(Atr,=,Aux),atom_concat(Aux,Val,Interogare),
-scrie_fis_ad('log.txt',Interogare).
+	asserta( fapt(av(Atr,Val),100,[utiliz])), atom_concat(Atr,=,Aux),atom_concat(Aux,Val,Interogare),
+	scrie_fis_ad('log.txt',Interogare).
 
 det_val_fc([nu],da,-100).  %daca rasp e nu, memoreaza da cu -100 
 det_val_fc([nu,FC],da,NFC) :- NFC is -FC.  
@@ -547,10 +548,6 @@ incarca_descrierea :-
 repeat,citeste_descriere(L),
 proceseaza(L), L==[end_of_file],nl .
 
-/*incarca_descriere:- nl, 
-write('Introduceti numele fisierului de descriere care doriti sa fie incarcat: '),nl, write('|:'),read(F),
-file_exists(F),!,incarca_descriere(F).
-incarca_descriere:- write('Nume incorect de fisier! '),nl,fail.*/
 
 incarca_descriere(F) :-
 retractall(descriere(_,_,_,_)),
@@ -561,16 +558,6 @@ citeste_descriere(L):-
 (Lin==[end_of_file],L=Lin,!;
  Lin=['-','-'|_], L=[],!;
  citeste_descriere(RestLinii),append(Lin,RestLinii,L) ).
- 
-incarca_reguli :-
-repeat,citeste_propozitie(L),
-proceseaza(L),L == [end_of_file],nl.
-
-/*incarca :- nl,
-write('Introduceti numele fisierului de reguli care doriti sa fie incarcat: '),nl, write('|:'),read(F),
-file_exists(F),!,incarca(F).
-
-incarca:- write('Nume incorect de fisier! '),nl,fail.*/
 
 incarca(F) :-
 retractall(interogat(_)),retractall(fapt(_,_,_)),
